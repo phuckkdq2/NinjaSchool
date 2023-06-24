@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class EnemySpawn : Spawner
 {
-    [SerializeField] protected Transform enemy;
+    [SerializeField] protected Transform enemy;                         // biến hứng enemy để spawn
     [SerializeField] protected EnemySpawnerCtrl enemySpawnerCtrl;
 
-    // [SerializeField] private SpawnPoint spawnPoint;
-
-    // public SpawnPoint SpawnPoint { get => spawnPoint; }
+    private static EnemySpawn instance;
+    public static EnemySpawn Instance { get => instance;}
 
     void Start()
     {
         this.SpawnEnemies();
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        EnemySpawn.instance = this;
+    }
+
+    
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadEnemySpawnerCtrl();
         this.LoadEnemy();
-        // this.LoadSpawnPoint();
     }
 
     protected virtual void LoadEnemySpawnerCtrl()
@@ -33,25 +38,18 @@ public class EnemySpawn : Spawner
     protected virtual void LoadEnemy()
     {
         if(this.enemy != null) return;
-        this.enemy = transform.Find("Enemy");
+        this.enemy = transform.Find("Prefabs");
+        enemy.gameObject.SetActive(false);
     }
-
-    // protected virtual void LoadSpawnPoint()
-    // {
-    //     if(this.spawnPoint != null) return;
-    //     this.spawnPoint = FindObjectOfType<SpawnPoint>();
-    // }
 
     public void SpawnEnemies()
     {
-        List<Vector3> listPos = enemySpawnerCtrl.SpawnPoint.GetSpawnPositions();
-        foreach(Vector3 pos in listPos)
+        List<Vector3> listPos = enemySpawnerCtrl.SpawnPoint.GetSpawnPositions();        // duyệt qua các điểm để spawn
+        foreach(Vector3 pos in listPos)                                                 // lấy ra các điểm 
         {
-            Spawn(enemy, pos, Quaternion.identity);
-            
+           Transform objs = Spawn(enemy, pos, Quaternion.identity);                     
+           objs.gameObject.SetActive(true);
         }
-
-        
     }
 
     
