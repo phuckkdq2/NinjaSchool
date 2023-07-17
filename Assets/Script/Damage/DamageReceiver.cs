@@ -52,7 +52,7 @@ public abstract class DamageReceiver : EnemyAbstract
 
     protected virtual void CheckIsDead()
     {
-        if(!isDead) return;
+        if(!IsDead()) return;
         this.isDead = true;
         this.OnDead();
     }

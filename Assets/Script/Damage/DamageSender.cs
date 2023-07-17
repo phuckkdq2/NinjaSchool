@@ -12,7 +12,7 @@ public class DamageSender : Darwin
         this.Send(damageReceiver);
     }
 
-    public virtual void Send( DamageReceiver damageReceiver)
+    public virtual void Send(DamageReceiver damageReceiver)
     {
         damageReceiver.Deduct(this.damage);
     }
