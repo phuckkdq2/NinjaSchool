@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCtrl : MonoBehaviour
+public class EnemyCtrl : Darwin
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] protected EnemyDespawn enemyDespawn;
+    public EnemyDespawn EnemyDespawn { get => enemyDespawn; }
+
+    protected override void LoadComponent()
     {
-        
+        base.LoadComponent();
+        this.LoadEnemyDespawn();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void LoadEnemyDespawn()
     {
-        
+        if(this.enemyDespawn != null) return;
+        this.enemyDespawn = transform.GetComponentInChildren<EnemyDespawn>();
     }
 }

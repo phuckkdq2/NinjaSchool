@@ -9,9 +9,11 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
     [SerializeField] protected Rigidbody2D mvrigidbody2D;
     public Rigidbody2D Mvrigidbody2D { get => mvrigidbody2D;}
     [SerializeField] protected Animator animator;
-    public Animator Animator { get => animator; set => animator = value; }
+    public Animator Animator { get => animator; }
     [SerializeField] protected Movement movement;
-    public Movement Movement { get => movement; set => movement = value; }
+    public Movement Movement { get => movement; }
+    [SerializeField] protected DamageSender damageSender;
+    public DamageSender DamageSender { get => damageSender;}
 
     protected override void LoadComponent()
     {
@@ -20,29 +22,35 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
         this.LoadBoxRigidbody();
         this.LoadAnimator();
         this.LoadMovement();
+        this.LoadDamageSender();
     }
     protected virtual void LoadBoxColider()
     {
         if(this.boxCollider2D != null) return;
-        this.boxCollider2D = GetComponentInChildren<BoxCollider2D>();
+        this.boxCollider2D = transform.GetComponentInChildren<BoxCollider2D>();
     }
 
     protected virtual void LoadBoxRigidbody()
     {
         if(this.mvrigidbody2D != null) return;
-        this.mvrigidbody2D = GetComponentInChildren<Rigidbody2D>();
+        this.mvrigidbody2D = transform.GetComponentInChildren<Rigidbody2D>();
     }
 
     protected virtual void LoadAnimator()
     {
         if(this.animator != null) return;
-        this.animator = GetComponentInChildren<Animator>(); 
+        this.animator = transform.GetComponentInChildren<Animator>(); 
     }
 
     protected virtual void LoadMovement()
     {
         if(this.movement != null) return;
-        this.movement = GetComponentInChildren<Movement>();
+        this.movement = transform.GetComponentInChildren<Movement>();
     }
 
+   protected virtual void LoadDamageSender()
+   {
+        if(this.damageSender != null) return;
+        this.damageSender = transform.GetComponentInChildren<DamageSender>();
+   }
 }
