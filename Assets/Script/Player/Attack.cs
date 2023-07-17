@@ -12,10 +12,8 @@ public class Attack : Darwin
     RaycastHit2D hit ;                                      // biến hứng raycast
     public RaycastHit2D Hit { get => hit; set => hit = value; } 
 
-
     void Update()
-    {
-              
+    {         
         if(InputManager.Instance.IsAttack)
         {
             animator.SetBool("isAttack", true); 
@@ -26,7 +24,6 @@ public class Attack : Darwin
             animator.SetBool("isAttack", false);
         }
     }
-
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -58,8 +55,7 @@ public class Attack : Darwin
             {
                 Debug.DrawRay (transform.position, playerCtrl.Movement.MoveDir* hit.distance , Color.red);          // debug tia ray cast màu đỏ
                 enemyDespawn.DespawnEnemy();                                                                        // gọi hàm Despawn object
-            }
-                
+            }        
         }
         else {   
             Debug.DrawRay (transform.position, playerCtrl.Movement.MoveDir* distancee, Color.green);                // debug tia raycast màu xanh

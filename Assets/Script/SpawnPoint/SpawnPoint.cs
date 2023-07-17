@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnPoint : Darwin
 {
     [SerializeField] protected List<Transform> points ;
+    [SerializeField] protected List<bool> isSpawnedStatus ; 
 
     protected override void LoadComponent()
     {
@@ -21,7 +22,7 @@ public class SpawnPoint : Darwin
         }
     }
 
-    public List<Transform> GetSpawnPoint()
+    public virtual List<Transform> GetSpawnPoint()
     {
         List<Transform> spawnPoint = new List<Transform>();
 
@@ -32,7 +33,7 @@ public class SpawnPoint : Darwin
         return spawnPoint;
     }
 
-    public List<Vector3> GetSpawnPositions()
+    public virtual List<Vector3> GetSpawnPositions()
     {
         List<Vector3> spawnPositions = new List<Vector3>();
 
@@ -41,6 +42,19 @@ public class SpawnPoint : Darwin
             spawnPositions.Add(point.position);
         }
         return spawnPositions;
+    }
+
+
+    public virtual void SetSpawnedStatus()
+    {
+        // Xóa danh sách để đảm bảo nó khớp với kích thước danh sách 'points'
+        isSpawnedStatus.Clear();
+
+        // Khởi tạo trạng thái 'isSpawned' ban đầu là false cho mỗi điểm
+        for (int i = 0; i < points.Count; i++)
+        {
+            isSpawnedStatus.Add(false);
+        }
     }
 
 }
