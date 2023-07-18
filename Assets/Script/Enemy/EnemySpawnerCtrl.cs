@@ -10,17 +10,27 @@ public class EnemySpawnerCtrl : Darwin
     [SerializeField] protected WormSpawnPoint wormSpawnPoint;
     public WormSpawnPoint WormSpawnPoint { get => wormSpawnPoint;}
 
+    [SerializeField] protected WolfSpawnPoint wolfSpawnPoint;
+    public WolfSpawnPoint WolfSpawnPoint { get => wolfSpawnPoint;}
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadSpawnPoint();
+        this.LoadWormSpawnPoint();
+        this.LoadWolfSpawnPoint();
         this.LoadEnemySpawner();
     }
 
-    protected virtual void LoadSpawnPoint()
+    protected virtual void LoadWormSpawnPoint()
     {
         if(this.wormSpawnPoint != null) return;
         this.wormSpawnPoint = Transform.FindObjectOfType<WormSpawnPoint>();
+    }
+    
+    protected virtual void LoadWolfSpawnPoint()
+    {
+        if(this.wolfSpawnPoint != null) return;
+        this.wolfSpawnPoint = Transform.FindObjectOfType<WolfSpawnPoint>();
     }
 
     protected virtual void LoadEnemySpawner()

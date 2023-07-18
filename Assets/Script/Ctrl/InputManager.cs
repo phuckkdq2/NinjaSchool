@@ -22,11 +22,6 @@ public class InputManager : MonoBehaviour
     private void Awake() {
         InputManager.instance = this;
     }
-    
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

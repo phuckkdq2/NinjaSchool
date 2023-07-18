@@ -22,7 +22,7 @@ public class SpawnPoint : Darwin
         }
     }
 
-    public virtual List<Transform> GetSpawnPoint()
+    public virtual List<Transform> GetSpawnPoint()                  // lấy ra các point trong list points
     {
         List<Transform> spawnPoint = new List<Transform>();
 
@@ -31,30 +31,6 @@ public class SpawnPoint : Darwin
             spawnPoint.Add(point);
         }
         return spawnPoint;
-    }
-
-    public virtual List<Vector3> GetSpawnPositions()
-    {
-        List<Vector3> spawnPositions = new List<Vector3>();
-
-        foreach (Transform point in this.points)
-        {
-            spawnPositions.Add(point.position);
-        }
-        return spawnPositions;
-    }
-
-
-    public virtual void SetSpawnedStatus()
-    {
-        // Xóa danh sách để đảm bảo nó khớp với kích thước danh sách 'points'
-        isSpawnedStatus.Clear();
-
-        // Khởi tạo trạng thái 'isSpawned' ban đầu là false cho mỗi điểm
-        for (int i = 0; i < points.Count; i++)
-        {
-            isSpawnedStatus.Add(false);
-        }
     }
 
 }

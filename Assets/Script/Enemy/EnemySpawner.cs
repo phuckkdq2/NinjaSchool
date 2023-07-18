@@ -7,7 +7,8 @@ public class EnemySpawner : Spawner
     private static EnemySpawner instance;
     public static EnemySpawner Instance { get => instance;}
 
-    public static string Worm = "Worm";
+    public static string worm = "worm";
+    public static string wolf = "wolf";
 
     protected override void Awake()
     {
@@ -15,9 +16,9 @@ public class EnemySpawner : Spawner
         EnemySpawner.instance = this;
     }
 
-    public virtual void SpawnEnemyAtPoint(Transform point)
+    public virtual void SpawnWormAtPoint(Transform point, string enemy)         // spawn enemy tại điểm truyền vào
     {
-        Transform obj = Spawn(EnemySpawner.Worm, point.position, point.rotation);
+        Transform obj = Spawn(enemy, point.position, point.rotation);
         obj.gameObject.SetActive(true);
         obj.parent = point;
     }

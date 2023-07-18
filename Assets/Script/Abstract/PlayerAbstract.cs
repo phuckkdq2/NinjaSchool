@@ -11,12 +11,12 @@ public abstract class PlayerAbstract : Darwin
     protected override void LoadComponent()
     {
         base.LoadComponent();      
-        this.LoadPlayerCtrl();          // load component <BulletCtrl>
+        this.LoadPlayerCtrl();         
     }
 
     protected virtual void LoadPlayerCtrl()                            
     {
         if(this.playerCtrl != null) return;
-        this.playerCtrl = transform.parent.GetComponent<PlayerCtrl>();      // load component <BulletCtrl> từ thằng cha (obj Bullet_1)
+        this.playerCtrl = transform.parent.GetComponent<PlayerCtrl>();      
     }
 }

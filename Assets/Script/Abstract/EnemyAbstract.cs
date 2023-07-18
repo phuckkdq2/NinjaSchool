@@ -12,12 +12,12 @@ public abstract class EnemyAbstract : Darwin
     protected override void LoadComponent()
     {
         base.LoadComponent();      
-        this.LoadEnemyCtrl();          // load component <BulletCtrl>
+        this.LoadEnemyCtrl();          
     }
 
     protected virtual void LoadEnemyCtrl()                            
     {
         if(this.enemyCtrl != null) return;
-        this.enemyCtrl = transform.parent.GetComponent<EnemyCtrl>();      // load component <BulletCtrl> từ thằng cha (obj Bullet_1)
+        this.enemyCtrl = transform.parent.GetComponent<EnemyCtrl>();     
     }
 }

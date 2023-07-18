@@ -37,12 +37,12 @@ public abstract class DamageReceiver : EnemyAbstract
         this.isDead = false;
     }
 
-    public virtual void Deduct(float dame)
+    public virtual void Deduct(float dame)              // hàm trừ máu
     {
         if(this.isDead) return;
         this.hp -= dame;
-        if(this.hp < 0) this.hp = 0;
-        this.CheckIsDead();
+        if(this.hp < 0) this.hp = 0;                    // nếu hp giảm xuống tháp hơn 0 thì set bằng 0 
+        this.CheckIsDead();                             
     }   
 
     protected virtual bool IsDead()
@@ -50,12 +50,12 @@ public abstract class DamageReceiver : EnemyAbstract
         return this.hp <= 0;
     }
 
-    protected virtual void CheckIsDead()
+    protected virtual void CheckIsDead()                // check dead
     {
         if(!IsDead()) return;
         this.isDead = true;
         this.OnDead();
     }
 
-    protected abstract void OnDead();
+    protected abstract void OnDead();                   // for overrride
 }
