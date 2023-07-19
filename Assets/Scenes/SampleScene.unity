@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 9276462}
   - component: {fileID: 9276464}
   m_Layer: 3
-  m_Name: worm
+  m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,6 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDespawn: {fileID: 875112609}
+  enemySO: {fileID: 11400000, guid: e17b342f79df5c54383596bbd9cfff8b, type: 2}
 --- !u!1 &11925254
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,8 +906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCtrl: {fileID: 2089323138}
   boxCollider: {fileID: 17990353}
-  hp: 0
-  hpMax: 4
+  hp: 6
+  hpMax: 6
   isDead: 0
 --- !u!1 &21822667
 GameObject:
@@ -32205,7 +32206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCtrl: {fileID: 9276464}
   boxCollider: {fileID: 910315249}
-  hp: 0
+  hp: 4
   hpMax: 4
   isDead: 0
 --- !u!61 &910315249
@@ -73004,7 +73005,7 @@ GameObject:
   - component: {fileID: 2089323137}
   - component: {fileID: 2089323138}
   m_Layer: 3
-  m_Name: wolf
+  m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73041,6 +73042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDespawn: {fileID: 721710800}
+  enemySO: {fileID: 11400000, guid: a7097613d01bfcf4d97629967787efb6, type: 2}
 --- !u!1 &2091870299
 GameObject:
   m_ObjectHideFlags: 0

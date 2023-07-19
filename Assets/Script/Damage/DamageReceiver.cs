@@ -31,6 +31,13 @@ public abstract class DamageReceiver : EnemyAbstract
         this.ReBorn();
     }
 
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+        this.ReBorn();
+    }
+
+    
     public virtual void ReBorn()
     {
         this.hp = this.hpMax;

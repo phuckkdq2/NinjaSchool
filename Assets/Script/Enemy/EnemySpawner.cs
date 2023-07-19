@@ -7,8 +7,8 @@ public class EnemySpawner : Spawner
     private static EnemySpawner instance;
     public static EnemySpawner Instance { get => instance;}
 
-    public static string worm = "worm";
-    public static string wolf = "wolf";
+    public static string worm = "Worm";
+    public static string wolf = "Wolf";
 
     protected override void Awake()
     {

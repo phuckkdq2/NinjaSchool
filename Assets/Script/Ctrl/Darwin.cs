@@ -14,8 +14,8 @@ public class Darwin : MonoBehaviour
     
 
     protected virtual void Reset() {
-        this.ResetValue();
         this.LoadComponent();
+        this.ResetValue();
     }
 
     protected virtual void ResetValue(){
