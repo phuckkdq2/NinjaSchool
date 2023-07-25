@@ -26,6 +26,7 @@ public class Movement : Darwin
 
     void Update()
     {
+        if(InputManager.Instance.IsAttack) return;
         this.Moving();          // gọi hàm di chuyển
         this.AnimationRun();    // gọi hàm animation chạy
     }

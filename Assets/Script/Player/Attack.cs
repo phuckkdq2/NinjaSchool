@@ -40,7 +40,7 @@ public class Attack : PlayerAbstract
        hit = Physics2D.Raycast (transform.position, playerCtrl.Movement.MoveDir*distancee, distancee, layerMask);   // tạo tia raycast
         if (hit.collider != null) 
         {
-            // Debug.Log(hit.collider.name);                 // debug ra tên object mà nó bắn trúng       
+            // Debug.Log(hit.collider.name);                                 // debug ra tên object mà nó bắn trúng       
             playerCtrl.DamageSender.Send(hit.collider.transform);           // gọi hàm send dame để trừ máu 
         }
         else {   

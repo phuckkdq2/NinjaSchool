@@ -79,19 +79,5 @@ public abstract class Spawner : Darwin
     {
         this.poolObjs.Add(obj);                     // thêm vào pool
         obj.gameObject.SetActive(false);            // off nó đi
-        StartCoroutine(ReSpawn(obj));               // Gọi hàm Respawn sau khoảng thời gian
-    }
-
-    protected virtual IEnumerator ReSpawn( Transform obj)
-    {
-        yield return new WaitForSeconds(5f);                    // đợi sau 5s
-        Transform point = getSpawnpoint(obj);                   // lấy ra điểm để respawn 
-        this.Spawn(obj, point.position, point.rotation);        // spawn lại nó 
-        obj.gameObject.SetActive(true);                         // bật nó lên
-    }
-
-    protected virtual Transform getSpawnpoint (Transform obj)   // hàm trả về Spawn point 
-    {
-        return obj.transform.parent;
     }
 }
