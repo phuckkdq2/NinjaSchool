@@ -42,9 +42,22 @@ public class Attack : PlayerAbstract
         {
             // Debug.Log(hit.collider.name);                                 // debug ra tên object mà nó bắn trúng       
             playerCtrl.DamageSender.Send(hit.collider.transform);           // gọi hàm send dame để trừ máu 
+            this.CreateFxBlood(hit.collider);
         }
         else {   
             Debug.DrawRay (transform.position, playerCtrl.Movement.MoveDir* distancee, Color.green);                // debug tia raycast màu xanh
         }
+    }
+
+    protected virtual void CreateFxBlood( Collider2D other)
+    {
+        string FxName = this.GetFxBlood();
+        Transform fxBlood = FxSpawner.Instance.Spawn(FxName, other.transform.position, other.transform.rotation);
+        fxBlood.gameObject.SetActive(true);
+    }
+
+    protected virtual string GetFxBlood()
+    {
+        return FxSpawner.blood;
     }
 }

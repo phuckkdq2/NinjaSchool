@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b03cdc8d4dbcf4fac5d1afe6084f87, type: 3}
-  m_Name: Worm
+  m_Script: {fileID: 11500000, guid: dc7c5608483d0c74caa53139af6396e1, type: 3}
+  m_Name: Iron
   m_EditorClassIdentifier: 
-  enemyName: worm
-  hpMax: 4
-  dropList:
-  - itemSO: {fileID: 11400000, guid: 4dd7863242b390d4bb6a53e143db8619, type: 2}
-    dropRate: 70000
-    minDrop: 0
-    maxDrop: 0
+  itemCode: 0
+  itemName: Iron

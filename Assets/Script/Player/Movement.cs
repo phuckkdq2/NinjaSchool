@@ -56,7 +56,7 @@ public class Movement : Darwin
             }      
             transform.parent.localScale = new Vector3(1, transform.parent.localScale.y, transform.parent.localScale.z);
         }
-        else if (InputManager.Instance.IsJump && this.is_ground){
+        if (InputManager.Instance.IsJump && this.is_ground){
             playerCtrl.Mvrigidbody2D.AddForce(Vector2.up* forceJump);
             // rb.velocity = Vector2.up * forceJump;
             this.is_ground = false; 
