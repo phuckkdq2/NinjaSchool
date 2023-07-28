@@ -8,7 +8,13 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         this.OnDeadFx();
         enemyCtrl.EnemyDespawn.DespawnEnemy();              // Despawn enemy 
-        DropManager.Instance.Drop(enemyCtrl.EnemySO.dropList);
+        this.DropOnDead();
+        
+    }
+
+    protected virtual void DropOnDead()
+    {
+        ItemDropSpawner.Instance.Drop(enemyCtrl.EnemySO.dropList, transform.position, transform.rotation);
     }
 
     protected virtual void OnDeadFx()

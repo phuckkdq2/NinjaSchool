@@ -6,6 +6,6 @@ using UnityEngine;
 
 public class ItemSO : ScriptableObject
 {
-    public float itemCode = 0;
+    public ItemCode itemCode = ItemCode.NoItem;
     public string itemName = " item";
 }
