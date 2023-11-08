@@ -28,6 +28,9 @@ public class Movement : Darwin
     {
         this.Moving();          // gọi hàm di chuyển
         Jumping();
+        if(is_ground == true) animator.SetBool("Jump", false);
+        else animator.SetBool("Jump", true);
+        animator.SetFloat("Yveloc", playerCtrl.Mvrigidbody2D.velocity.y);
     }
 
     // hàm di chuyển
@@ -53,12 +56,10 @@ public class Movement : Darwin
     {
         if (InputManager.Instance.IsJump && this.is_ground)
         {
-            playerCtrl.Mvrigidbody2D.AddForce(Vector2.up* forceJump);
+            playerCtrl.Mvrigidbody2D.AddForce(Vector2.up* forceJump); 
             animator.SetBool("Jump", true);
             this.is_ground = false; 
         }
-        animator.SetFloat("Yveloc", playerCtrl.Mvrigidbody2D.velocity.y);
-
     }
 
     private void OnCollisionEnter2D(Collision2D col){
@@ -67,4 +68,12 @@ public class Movement : Darwin
             animator.SetBool("Jump", !is_ground);
         }  
     }
+
+    private void OnCollisionExit2D(Collision2D col) {
+        if(col.gameObject.CompareTag("Ground")){
+            this.is_ground = false;
+            animator.SetBool("Jump", !is_ground);
+        }  
+    }
+
 }

@@ -37,7 +37,7 @@ public class Attack : PlayerAbstract
 
     protected virtual void Attacking()
     {
-       hit = Physics2D.Raycast (transform.position, playerCtrl.Movement.MoveDir*distancee, distancee, layerMask);   // tạo tia raycast
+        hit = Physics2D.Raycast (transform.position, playerCtrl.Movement.MoveDir*distancee, distancee, layerMask);   // tạo tia raycast
         if (hit.collider != null) 
         {
             // Debug.Log(hit.collider.name);                                 // debug ra tên object mà nó bắn trúng       

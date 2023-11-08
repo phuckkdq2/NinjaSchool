@@ -18,7 +18,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: bc4e55760c2964e44b34e411e8fd1a93, type: 2}
-    m_Threshold: 0
+    m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -27,7 +27,7 @@ BlendTree:
   m_BlendParameter: Yveloc
   m_BlendParameterY: Running
   m_MinThreshold: -1
-  m_MaxThreshold: 0
+  m_MaxThreshold: 1
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -283,7 +283,7 @@ AnimatorStateMachine:
     m_Position: {x: 470, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7295903381046354225}
-    m_Position: {x: 160, y: -50, z: 0}
+    m_Position: {x: 80, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7215257645963219573}
     m_Position: {x: 480, y: 100, z: 0}
