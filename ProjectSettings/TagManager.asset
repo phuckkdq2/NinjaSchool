@@ -40,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Bg
+    uniqueID: 559786903
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: MapGround
+    uniqueID: 2541807679
     locked: 0
