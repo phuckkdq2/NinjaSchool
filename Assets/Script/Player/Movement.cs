@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class Movement : Darwin
 {
-    [SerializeField] protected float moveSpeed = 10f;           // biến quản lí tốc độ chạy
-    [SerializeField] protected float forceJump = 500f;          // biến quản lí lực nhảy
-    [SerializeField] private bool is_ground;                    // quản lí trạng thái đang ở trên mặt đất không?      
+    [SerializeField] protected float moveSpeed = 7f;           // biến quản lí tốc độ chạy
+    [SerializeField] protected float forceJump = 10f;          // biến quản lí lực nhảy   
     [SerializeField] protected PlayerCtrl playerCtrl;           // chứa coponent quản lí các component khác
     private Vector3 moveDir;
     public Vector3 MoveDir { get => moveDir; set => moveDir = value; }
     [SerializeField] protected Animator animator;
+    [SerializeField] protected StateMovement stateMovement;
+    float xDir;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] BoxCollider2D coll;
+    [SerializeField] LayerMask jumableGround;
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadPlayerCtrl();              
+        this.LoadPlayerCtrl();
+        rb = playerCtrl.Mvrigidbody2D;
+        coll = GetComponent<BoxCollider2D>();
     }
 
     protected virtual void LoadPlayerCtrl()
     {
-        if(this.playerCtrl != null) return;
+        if (this.playerCtrl != null) return;
         this.playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
 
@@ -28,52 +34,66 @@ public class Movement : Darwin
     {
         this.Moving();          // gọi hàm di chuyển
         Jumping();
-        if(is_ground == true) animator.SetBool("Jump", false);
-        else animator.SetBool("Jump", true);
-        animator.SetFloat("Yveloc", playerCtrl.Mvrigidbody2D.velocity.y);
+        UpdateAnimation();
     }
 
     // hàm di chuyển
     protected virtual void Moving()
     {
-        float xDir = Input.GetAxisRaw("Horizontal");
-        if(is_ground)playerCtrl.Mvrigidbody2D.velocity = new Vector2(moveSpeed * xDir , playerCtrl.Mvrigidbody2D.velocity.y);
-        else playerCtrl.Mvrigidbody2D.velocity = new Vector2(moveSpeed/2 * xDir , playerCtrl.Mvrigidbody2D.velocity.y);
-        if(playerCtrl.Mvrigidbody2D.velocity.x > 0)
+        xDir = Input.GetAxisRaw("Horizontal");
+        if (IsGrounded()) rb.velocity = new Vector2(moveSpeed * xDir, rb.velocity.y);       // dưới đất di chuyển xa 
+        else rb.velocity = new Vector2(moveSpeed / 2 * xDir, rb.velocity.y);             // trên không di chuyển ngắn 
+        if (rb.velocity.x > 0)
         {
-            transform.parent.localScale = new Vector3(1,1,1);
+            transform.parent.localScale = new Vector3(1, 1, 1);
             moveDir = Vector3.right;
-        } 
-        if(playerCtrl.Mvrigidbody2D.velocity.x < 0)
+        }
+        if (rb.velocity.x < 0)
         {
-            transform.parent.localScale = new Vector3(-1,1,1);
+            transform.parent.localScale = new Vector3(-1, 1, 1);
             moveDir = Vector3.left;
-        } 
-        if(is_ground)   animator.SetFloat("Running", Mathf.Abs(xDir));
+        }
     }
 
     protected virtual void Jumping()
     {
-        if (InputManager.Instance.IsJump && this.is_ground)
+        if (InputManager.Instance.IsJump && IsGrounded())
         {
-            playerCtrl.Mvrigidbody2D.AddForce(Vector2.up* forceJump); 
-            animator.SetBool("Jump", true);
-            this.is_ground = false; 
+            rb.velocity = new Vector2(rb.velocity.x, forceJump);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.CompareTag("Ground")){
-            this.is_ground = true;
-            animator.SetBool("Jump", !is_ground);
-        }  
+    protected virtual void UpdateAnimation()
+    {
+        if (xDir != 0 && IsGrounded())
+        {
+            stateMovement = StateMovement.Run;
+        }
+        else stateMovement = StateMovement.Idle;
+
+        if (rb.velocity.y > .1f)
+        {
+            stateMovement = StateMovement.Jump;
+        }
+        else if (rb.velocity.y < -.1f)
+        {
+            stateMovement = StateMovement.Falling;
+        }
+        animator.SetInteger("State", (int)stateMovement);
     }
 
-    private void OnCollisionExit2D(Collision2D col) {
-        if(col.gameObject.CompareTag("Ground")){
-            this.is_ground = false;
-            animator.SetBool("Jump", !is_ground);
-        }  
+    private bool IsGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumableGround);
     }
 
+}
+
+public enum StateMovement
+{
+    Idle,
+    Run,
+    Attack,
+    Jump,
+    Falling
 }

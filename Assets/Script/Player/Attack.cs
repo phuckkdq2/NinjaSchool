@@ -15,12 +15,8 @@ public class Attack : PlayerAbstract
     {         
         if(InputManager.Instance.IsAttack)
         {
-            animator.SetBool("isAttack", true); 
+            animator.SetInteger("State", (int)StateMovement.Attack); 
             this.Attacking();
-        }
-        else
-        {
-            animator.SetBool("isAttack", false);
         }
     }
     protected override void LoadComponent()
