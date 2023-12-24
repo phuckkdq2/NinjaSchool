@@ -13,7 +13,7 @@ TagManager:
   - Enemy
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -43,9 +43,12 @@ TagManager:
   - name: Bg
     uniqueID: 559786903
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Junk
+    uniqueID: 3800477055
     locked: 0
   - name: MapGround
     uniqueID: 2541807679
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

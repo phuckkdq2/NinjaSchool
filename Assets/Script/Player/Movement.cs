@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : Darwin
 {
-    [SerializeField] protected float moveSpeed = 7f;           // biến quản lí tốc độ chạy
+    [SerializeField] protected float moveSpeed = 10f;           // biến quản lí tốc độ chạy
     [SerializeField] protected float forceJump = 10f;          // biến quản lí lực nhảy   
     [SerializeField] protected PlayerCtrl playerCtrl;           // chứa coponent quản lí các component khác
     private Vector3 moveDir;
