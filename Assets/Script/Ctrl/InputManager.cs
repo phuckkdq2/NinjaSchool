@@ -30,8 +30,8 @@ public class InputManager : MonoBehaviour
 
     public void getInputkey()
     {
-        // this.moveLeft = Input.GetKey(KeyCode.LeftArrow);
-        // this.moveRight = Input.GetKey(KeyCode.RightArrow);
+        this.moveLeft = Input.GetKey(KeyCode.LeftArrow);
+        this.moveRight = Input.GetKey(KeyCode.RightArrow);
         this.isJump = Input.GetKey(KeyCode.UpArrow);
         this.isAttack = Input.GetKeyDown(KeyCode.Space);
     }

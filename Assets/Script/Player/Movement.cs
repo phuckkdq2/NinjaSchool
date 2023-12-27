@@ -15,7 +15,7 @@ public class Movement : Darwin
     [SerializeField] Rigidbody2D rb;
     [SerializeField] BoxCollider2D coll;
     [SerializeField] LayerMask jumableGround;
-
+    [SerializeField] private bool isRunning;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -40,24 +40,39 @@ public class Movement : Darwin
     // hàm di chuyển
     protected virtual void Moving()
     {
-        xDir = Input.GetAxisRaw("Horizontal");
-        if (IsGrounded()) rb.velocity = new Vector2(moveSpeed * xDir, rb.velocity.y);       // dưới đất di chuyển xa 
-        else rb.velocity = new Vector2(moveSpeed / 2 * xDir, rb.velocity.y);             // trên không di chuyển ngắn 
-        if (rb.velocity.x > 0)
+        if (InputManager.Instance.MoveRight)
         {
+            isRunning = true;
             transform.parent.localScale = new Vector3(1, 1, 1);
             moveDir = Vector3.right;
+            if (IsGrounded())
+            {
+                transform.parent.position += moveDir * moveSpeed * Time.deltaTime;
+            }
+            else
+                transform.parent.position += moveDir * 5 * Time.deltaTime;
         }
-        if (rb.velocity.x < 0)
+        else if (InputManager.Instance.MoveLeft)
         {
+            isRunning = true;
             transform.parent.localScale = new Vector3(-1, 1, 1);
             moveDir = Vector3.left;
+            if (IsGrounded())
+            {
+                transform.parent.position += moveDir * moveSpeed * Time.deltaTime;
+            }
+            else
+                transform.parent.position += moveDir * 5 * Time.deltaTime;
+        }
+        else
+        {
+            isRunning = false;
         }
     }
 
     protected virtual void Jumping()
     {
-        if (InputManager.Instance.IsJump && IsGrounded())
+        if (InputManager.Instance.IsJump && IsGrounded() && rb.velocity.y == 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, forceJump);
         }
@@ -65,7 +80,7 @@ public class Movement : Darwin
 
     protected virtual void UpdateAnimation()
     {
-        if (xDir != 0 && IsGrounded())
+        if (isRunning && IsGrounded())
         {
             stateMovement = StateMovement.Run;
         }
