@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnInPoint : Darwin
 {
     [SerializeField] protected EnemySpawnerCtrl enemySpawnerCtrl;
+    [SerializeField] protected List<Transform> enemySpawnPoint1;
+    [SerializeField] protected List<Transform> enemySpawnPoint2;
 
     protected override void LoadComponent()
     {
@@ -19,17 +21,15 @@ public class SpawnInPoint : Darwin
     }
 
     protected virtual void Start() {
-        List<Transform> wormPoints = enemySpawnerCtrl.WormSpawnPoint.GetSpawnPoint();
-        this.SpawnEnemy(wormPoints, EnemySpawner.worm);
-        List<Transform> wolfPoints = enemySpawnerCtrl.WolfSpawnPoint.GetSpawnPoint();
-        this.SpawnEnemy(wolfPoints,EnemySpawner.wolf);
+        this.SpawnEnemy(enemySpawnPoint1, EnemySpawner.worm);
+        this.SpawnEnemy(enemySpawnPoint2,EnemySpawner.wolf);
     }
 
     protected virtual void SpawnEnemy(List<Transform> points, string e)
     {
         foreach(Transform point in points)                          // duyệt qua list điểm 
         {
-            EnemySpawner.Instance.SpawnWormAtPoint(point, e);       // spawn enemy tại điểm đó với tham sô truyền vao flaf tên enemy 
+            EnemySpawner.Instance.SpawnWormAtPoint(point, e);       // spawn enemy tại điểm đó với tham sô truyền vào là tên enemy 
         }
     }
 

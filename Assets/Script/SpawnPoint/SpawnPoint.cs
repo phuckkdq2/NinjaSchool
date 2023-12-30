@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnPoint : Darwin
 {
     [SerializeField] protected List<Transform> points ;
-    [SerializeField] protected List<bool> isSpawnedStatus ; 
 
     protected override void LoadComponent()
     {
