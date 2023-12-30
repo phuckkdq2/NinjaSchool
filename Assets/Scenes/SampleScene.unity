@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDespawn: {fileID: 875112609}
   enemySO: {fileID: 11400000, guid: e17b342f79df5c54383596bbd9cfff8b, type: 2}
+  damageReceiver: {fileID: 910315248}
 --- !u!1 &17990351
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,8 +943,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625001009}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.319156, y: -2.7393162, z: 5.11054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -980,8 +981,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 625001011}
-  wormSpawnPoint: {fileID: 1272425082}
-  wolfSpawnPoint: {fileID: 2133798675}
 --- !u!114 &625001013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +994,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnerCtrl: {fileID: 625001012}
+  enemySpawnPoint1:
+  - {fileID: 1604249877}
+  - {fileID: 89674181}
+  - {fileID: 1349148743}
+  - {fileID: 1762830974}
+  enemySpawnPoint2:
+  - {fileID: 1020238102}
+  - {fileID: 637693074}
+  - {fileID: 1003514436}
+  - {fileID: 660723372}
 --- !u!1 &637693073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,10 +1561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c34ffc234593194e9f077b7bc631387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCtrl: {fileID: 2089323138}
   spawnPoint: {fileID: 0}
-  isAlive: 1
   moveSpeed: 10
+  enemyCtrl: {fileID: 2089323138}
 --- !u!1 &1272425080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1609,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1272425080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41454a02821ae5647948e00000484291, type: 3}
+  m_Script: {fileID: 11500000, guid: 800852deeede65043992bd19450772e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   points:
@@ -1609,7 +1617,6 @@ MonoBehaviour:
   - {fileID: 89674181}
   - {fileID: 1349148743}
   - {fileID: 1762830974}
-  isSpawnedStatus: 
 --- !u!1 &1319400665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +1968,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570704214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.319156, y: 2.7393162, z: -5.11054}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2432,10 +2439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c34ffc234593194e9f077b7bc631387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCtrl: {fileID: 9276464}
   spawnPoint: {fileID: 0}
-  isAlive: 1
   moveSpeed: 5
+  enemyCtrl: {fileID: 9276464}
 --- !u!1 &1933093876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +2573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDespawn: {fileID: 721710800}
   enemySO: {fileID: 11400000, guid: a7097613d01bfcf4d97629967787efb6, type: 2}
+  damageReceiver: {fileID: 17990354}
 --- !u!1 &2133798674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,7 +2583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2133798676}
-  - component: {fileID: 2133798675}
+  - component: {fileID: 2133798677}
   m_Layer: 3
   m_Name: WolfSpawnPoint
   m_TagString: Untagged
@@ -2584,24 +2591,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2133798675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133798674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7caef64bb206ac1498ea4a6c4491a189, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points:
-  - {fileID: 1020238102}
-  - {fileID: 637693074}
-  - {fileID: 1003514436}
-  - {fileID: 660723372}
-  isSpawnedStatus: 
 --- !u!4 &2133798676
 Transform:
   m_ObjectHideFlags: 0
@@ -2621,6 +2610,23 @@ Transform:
   m_Father: {fileID: 1753046581}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133798677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133798674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800852deeede65043992bd19450772e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 1020238102}
+  - {fileID: 637693074}
+  - {fileID: 1003514436}
+  - {fileID: 660723372}
 --- !u!198 &580927547798123695
 ParticleSystem:
   m_ObjectHideFlags: 0
