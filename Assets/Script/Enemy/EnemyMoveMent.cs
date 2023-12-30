@@ -7,7 +7,7 @@ public class EnemyMoveMent : Darwin
 {
 
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float moveSpeed = 0.5f;
+    [SerializeField] private float moveSpeed;
     Vector3 dirMove;
     [SerializeField] protected EnemyCtrl enemyCtrl;
     public EnemyCtrl EnemyCtrl { get => enemyCtrl; }
@@ -27,7 +27,6 @@ public class EnemyMoveMent : Darwin
     void Start()
     {
         spawnPoint = enemyCtrl.transform.parent;
-        //MoveEnemy2();
         dirMove = Vector3.right;
     }
 
@@ -63,6 +62,7 @@ public class EnemyMoveMent : Darwin
             if (rand == 1) yield return new WaitForSeconds(2f);
             else yield return new WaitForSeconds(0.2f);
             transform.parent.position += dirMove * moveSpeed * Time.deltaTime;
+            moveSpeed = 10f;
             if (transform.parent.position.x > spawnPoint.position.x + 1)
             {
                 transform.parent.localScale = transform.parent.localScale = new Vector3(-1, 1, 1);
