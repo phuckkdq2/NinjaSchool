@@ -58,11 +58,11 @@ public class EnemyMoveMent : Darwin
     {
         while (!enemyCtrl.DamageReceiver.isDead)
         {
-            int rand = Random.Range(1, 30);
+            int rand = Random.Range(1, 40);
             if (rand == 1) yield return new WaitForSeconds(2f);
-            else yield return new WaitForSeconds(0.2f);
+            else yield return new WaitForSeconds(0.15f);
             transform.parent.position += dirMove * moveSpeed * Time.deltaTime;
-            moveSpeed = 10f;
+            moveSpeed = 5f;
             if (transform.parent.position.x > spawnPoint.position.x + 1)
             {
                 transform.parent.localScale = transform.parent.localScale = new Vector3(-1, 1, 1);

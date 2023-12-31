@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnPoint : Darwin
 {
-    [SerializeField] protected List<Transform> points ;
+    [SerializeField] public List<Transform> points ;
 
     protected override void LoadComponent()
     {

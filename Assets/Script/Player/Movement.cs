@@ -15,6 +15,7 @@ public class Movement : Darwin
     [SerializeField] Rigidbody2D rb;
     [SerializeField] BoxCollider2D coll;
     [SerializeField] LayerMask jumableGround;
+    [SerializeField] LayerMask collisonGround;
     [SerializeField] private bool isRunning;
     protected override void LoadComponent()
     {
@@ -45,6 +46,10 @@ public class Movement : Darwin
             isRunning = true;
             transform.parent.localScale = new Vector3(1, 1, 1);
             moveDir = Vector3.right;
+            if (IsCompartagWall())
+            {
+                return;
+            }
             if (IsGrounded())
             {
                 transform.parent.position += moveDir * moveSpeed * Time.deltaTime;
@@ -57,6 +62,10 @@ public class Movement : Darwin
             isRunning = true;
             transform.parent.localScale = new Vector3(-1, 1, 1);
             moveDir = Vector3.left;
+            if (IsCompartagWall())
+            {
+                return;
+            }
             if (IsGrounded())
             {
                 transform.parent.position += moveDir * moveSpeed * Time.deltaTime;
@@ -100,6 +109,11 @@ public class Movement : Darwin
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumableGround);
+    }
+
+    private bool IsCompartagWall()
+    {
+        return Physics2D.BoxCast(coll.bounds.center + transform.right * .1f * transform.parent.localScale.x, new Vector3(coll.bounds.size.x, coll.bounds.size.y, coll.bounds.size.z), 0f, Vector2.right, 0f, collisonGround);
     }
 
 }

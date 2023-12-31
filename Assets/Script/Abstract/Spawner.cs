@@ -7,7 +7,7 @@ public abstract class Spawner : Darwin
 
     [SerializeField] protected List<Transform> poolObjs;            // list chứa các thằng bị despawn 
     [SerializeField] protected List<Transform> prefabs;             // list chứa các thằng obj trong prefab
-          
+    [SerializeField] protected Transform Holder;     
 
     protected override void LoadComponent()
     {
@@ -50,6 +50,7 @@ public abstract class Spawner : Darwin
         Transform newPrefabs = GetObjectformPool(prefab);                                               // spawn object 
         newPrefabs.SetPositionAndRotation(spawnpos, rotation);                                          // set góc quay và vị trí bằng góc quay và vị trí đc truyền vào
         newPrefabs.name = prefab.name;                                                                  // set tên object spawn bằng tên object truyền vào cho dễ xử lí
+        newPrefabs.parent = this.Holder;
         return newPrefabs;
     }
 
