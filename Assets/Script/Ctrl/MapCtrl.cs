@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class MapCtrl : MonoBehaviour
 {
     [SerializeField] List<SpawnPoints> spawnPoints;
     [SerializeField] List<Transform> Enemies;
+    [SerializeField] public CinemachineVirtualCamera vcCamera;
+    [SerializeField] public PlayerCtrl player;
 
     private void Start()
     {
@@ -14,6 +17,11 @@ public class MapCtrl : MonoBehaviour
         {
             EnemySpawner.Instance.SpawnEnemy(spawnPoints[i].points, Enemies[i]);
         }
+    }
+
+    private void OnEnable() {
+        player = Transform.FindObjectOfType<PlayerCtrl>();
+        vcCamera.Follow = player.transform;
     }
 }
 
