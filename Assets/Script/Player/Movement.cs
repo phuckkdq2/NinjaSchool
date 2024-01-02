@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Movement : Darwin
 {
-    [SerializeField] protected float moveSpeed = 10f;           // biến quản lí tốc độ chạy
-    [SerializeField] protected float forceJump = 10f;          // biến quản lí lực nhảy   
+    [SerializeField] protected float moveSpeed = 7f;           // biến quản lí tốc độ chạy
+    [SerializeField] protected float forceJump = 11.2f;          // biến quản lí lực nhảy   
     [SerializeField] protected PlayerCtrl playerCtrl;           // chứa coponent quản lí các component khác
     private Vector3 moveDir;
     public Vector3 MoveDir { get => moveDir; set => moveDir = value; }
@@ -15,6 +15,7 @@ public class Movement : Darwin
     [SerializeField] Rigidbody2D rb;
     [SerializeField] BoxCollider2D coll;
     [SerializeField] LayerMask jumableGround;
+    [SerializeField] LayerMask jumableUnderWater;
     [SerializeField] LayerMask collisonGround;
     [SerializeField] private bool isRunning;
     protected override void LoadComponent()
@@ -115,6 +116,10 @@ public class Movement : Darwin
     {
         return Physics2D.BoxCast(coll.bounds.center + transform.right * .1f * transform.parent.localScale.x, new Vector3(coll.bounds.size.x, coll.bounds.size.y, coll.bounds.size.z), 0f, Vector2.right, 0f, collisonGround);
     }
+    private bool IsCompartagUnderWater()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumableUnderWater);
+    }
 
 }
 
@@ -124,5 +129,7 @@ public enum StateMovement
     Run,
     Attack,
     Jump,
-    Falling
+    Falling,
+    Hurt,
+    Death
 }

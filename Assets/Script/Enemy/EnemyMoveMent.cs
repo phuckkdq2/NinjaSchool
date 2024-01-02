@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class EnemyMoveMent : Darwin
 {
-
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float moveSpeed;
     Vector3 dirMove;

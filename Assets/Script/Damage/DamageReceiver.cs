@@ -47,6 +47,7 @@ public abstract class DamageReceiver : EnemyAbstract
     public virtual void Deduct(float dame)              // hàm trừ máu
     {
         if(this.isDead) return;
+
         this.hp -= dame;
         if(this.hp < 0) this.hp = 0;                    // nếu hp giảm xuống tháp hơn 0 thì set bằng 0 
         this.CheckIsDead();                             

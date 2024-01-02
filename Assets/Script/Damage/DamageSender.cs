@@ -6,7 +6,6 @@ public class DamageSender : Darwin
 {
     [SerializeField] protected float damage = 1;
 
-
     public virtual void Send(Transform obj)
     {
         DamageReceiver damageReceiver = obj.GetComponent<DamageReceiver>();
