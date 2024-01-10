@@ -20,7 +20,7 @@ public class MenuGameCtrl : MonoBehaviour
 
     public void RotateShuriken()
     {
-        tween = shuriken.DORotate(new Vector3(0,0,-360), 0.2f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+        tween = shuriken.DORotate(new Vector3(0,0,-360), 0.1f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
     }
 
     public void Loading()

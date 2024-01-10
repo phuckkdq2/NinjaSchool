@@ -17,7 +17,6 @@ public abstract class DamageReceiver : Darwin
         this.LoadCollider();
     }
     
-
     protected virtual void LoadCollider()
     {
         if (this.boxCollider != null) return;
@@ -35,7 +34,6 @@ public abstract class DamageReceiver : Darwin
         base.ResetValue();
         this.ReBorn();
     }
-
 
     public virtual void ReBorn()
     {

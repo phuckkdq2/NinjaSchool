@@ -27,6 +27,7 @@ public class PlayerDamageReciever : DamageReceiver
     {
         this.hpMax = UserData.instance.health;
         base.ReBorn();
+        GameUICtrl.Instance.hpSlider.value = 1;
     }
 
     public override void Deduct(float dame)

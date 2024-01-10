@@ -40,7 +40,7 @@ public class UserData
         expCount = 0;
         health += health * 20 / 100;
         damage += damage * 20 / 100;
-
+        GameUICtrl.Instance.UpdateLevel();
         SavingData.Instance.SaveData();
     }
 

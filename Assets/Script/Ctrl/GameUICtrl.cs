@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class GameUICtrl : MonoBehaviour
 {
-    [SerializeField] public Slider hpSlider;
     [SerializeField] private static GameUICtrl instance;
     [SerializeField] public static GameUICtrl Instance { get => instance;}
+    [SerializeField] public Slider hpSlider;
+    [SerializeField] public Text level;
 
     void Awake()
     {
         GameUICtrl.instance = this;
+    }
+
+    private void Start() {
+        UpdateLevel();
     }
 
     public void UpdateHealthBar(float rate)
@@ -21,4 +26,10 @@ public class GameUICtrl : MonoBehaviour
             hpSlider.value = rate;
         }
     }
+
+    public void UpdateLevel()
+    {
+        level.text = UserData.instance.level.ToString(); 
+    }
+
 }
