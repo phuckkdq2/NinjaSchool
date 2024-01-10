@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Spawner : Darwin
-{  
+{
 
     [SerializeField] protected List<Transform> poolObjs;            // list chứa các thằng bị despawn 
     [SerializeField] protected List<Transform> prefabs;             // list chứa các thằng obj trong prefab
-    [SerializeField] protected Transform Holder;     
+    [SerializeField] protected Transform Holder;
 
     protected override void LoadComponent()
     {
@@ -17,9 +17,9 @@ public abstract class Spawner : Darwin
 
     protected virtual void LoadPrefabs()                // them các obj trong prefabs vào list prefabs để quản lí
     {
-        if(this.prefabs.Count > 0 ) return;             
+        if (this.prefabs.Count > 0) return;
         Transform prefabsObj = transform.Find("Prefabs");
-        foreach(Transform prefab in prefabsObj)
+        foreach (Transform prefab in prefabsObj)
         {
             prefabs.Add(prefab);
         }
@@ -28,7 +28,7 @@ public abstract class Spawner : Darwin
 
     protected virtual void HidePrefabs()
     {
-        foreach(Transform prefab in this.prefabs)       // duyệt qua cac enemy trong thằng list prefabs
+        foreach (Transform prefab in this.prefabs)       // duyệt qua cac enemy trong thằng list prefabs
         {
             prefab.gameObject.SetActive(false);         // ẩn nó đi 
         }
@@ -37,15 +37,15 @@ public abstract class Spawner : Darwin
     public virtual Transform Spawn(string prefabName, Vector3 spawPos, Quaternion rotation)   // Spawn với tham số truyền vào là string
     {
         Transform prefab = this.GetPrefabByName(prefabName);            // lấy tên prefab 
-        if(prefab == null)                                              // nếu không có prefab thì không trả về gì 
-        {                                             
+        if (prefab == null)                                              // nếu không có prefab thì không trả về gì 
+        {
             Debug.LogWarning("prefab not found !" + prefabName);
             return null;
         }
         return Spawn(prefab, spawPos, rotation);                        // spawn thằng prefab được xử lí ở hàm Spawn() bên dưới
     }
 
-    public virtual Transform Spawn( Transform prefab, Vector3 spawnpos, Quaternion rotation)            // truyền vào 1 object , vị trí , góc quay
+    public virtual Transform Spawn(Transform prefab, Vector3 spawnpos, Quaternion rotation)            // truyền vào 1 object , vị trí , góc quay
     {
         Transform newPrefabs = GetObjectformPool(prefab);                                               // spawn object 
         newPrefabs.SetPositionAndRotation(spawnpos, rotation);                                          // set góc quay và vị trí bằng góc quay và vị trí đc truyền vào
@@ -58,7 +58,8 @@ public abstract class Spawner : Darwin
     {
         foreach (Transform poolObj in this.poolObjs)        // lặp qua list poolObjs 
         {
-            if(poolObj.name == prefab.name){                // kiểm tra xem trong poolObjs có obj nào giống tên (có bản sao) hay chưa
+            if (poolObj.name == prefab.name)
+            {                // kiểm tra xem trong poolObjs có obj nào giống tên (có bản sao) hay chưa
                 this.poolObjs.Remove(poolObj);              // bỏ objs đó ra khỏi list poolObjs
                 return poolObj;                             // trả về obj đó để chuẩn bị tái sử dụng(spawn)  
             }
@@ -69,9 +70,11 @@ public abstract class Spawner : Darwin
         return newPerfab;                                   // trả về thằng vừa được tạo để mang đi spawn
     }
 
-    protected virtual Transform GetPrefabByName(string prefabName){
-        foreach(Transform prefab in this.prefabs){          // duyejt qua list prefabs
-            if(prefabName == prefab.name) return prefab;    // nếu tên prefabs truyền vào trùng tên frebas trong list thì trả về nó
+    protected virtual Transform GetPrefabByName(string prefabName)
+    {
+        foreach (Transform prefab in this.prefabs)
+        {          // duyejt qua list prefabs
+            if (prefabName == prefab.name) return prefab;    // nếu tên prefabs truyền vào trùng tên frebas trong list thì trả về nó
         }
         return null;
     }

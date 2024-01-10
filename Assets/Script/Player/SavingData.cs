@@ -7,16 +7,16 @@ using System;
 public class SavingData : MonoSingleton<SavingData>
 {
     public UserData userData;
-    
+
     public override void Awake()
     {
         base.Awake();
         LoadData();
     }
 
-    private void Start() 
+    private void Start()
     {
-        
+
     }
 
     public void LoadData()
@@ -30,7 +30,7 @@ public class SavingData : MonoSingleton<SavingData>
         }
         string filePath = Path.Combine(dataFolder, file);           //  đường dẫn file
 
-        if(!File.Exists(filePath))
+        if (!File.Exists(filePath))
         {
             userData = new UserData();
             SaveData();
@@ -50,7 +50,7 @@ public class SavingData : MonoSingleton<SavingData>
         }
         string filePath = Path.Combine(dataFolder, file);       //  đường dẫn file
 
-        string userJson = JsonUtility.ToJson(userData,true);
+        string userJson = JsonUtility.ToJson(userData, true);
         File.WriteAllText(filePath, userJson);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FxSpawner : Spawner
 {
     private static FxSpawner instance;
-    public static FxSpawner Instance { get => instance;}
+    public static FxSpawner Instance { get => instance; }
 
     public static string smokeOne = "Smoke_1";
     public static string blood = "Blood";

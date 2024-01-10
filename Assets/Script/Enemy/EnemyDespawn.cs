@@ -8,5 +8,5 @@ public class EnemyDespawn : Darwin
     {
         EnemySpawner.Instance.Despawn(transform.parent);
     }
-    
+
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameUICtrl : MonoBehaviour
 {
     [SerializeField] private static GameUICtrl instance;
-    [SerializeField] public static GameUICtrl Instance { get => instance;}
+    [SerializeField] public static GameUICtrl Instance { get => instance; }
     [SerializeField] public Slider hpSlider;
     [SerializeField] public Slider expSlider;
     [SerializeField] public Text level;
@@ -16,14 +16,15 @@ public class GameUICtrl : MonoBehaviour
         GameUICtrl.instance = this;
     }
 
-    private void Start() {
+    private void Start()
+    {
         UpdateLevel();
         UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
     }
 
     public void UpdateHealthBar(float rate)
     {
-        if(hpSlider)
+        if (hpSlider)
         {
             hpSlider.value = rate;
         }
@@ -31,7 +32,7 @@ public class GameUICtrl : MonoBehaviour
 
     public void UpdateExpBar(float rate)
     {
-        if(expSlider)
+        if (expSlider)
         {
             expSlider.value = rate;
         }
@@ -39,7 +40,7 @@ public class GameUICtrl : MonoBehaviour
 
     public void UpdateLevel()
     {
-        level.text = UserData.instance.level.ToString(); 
+        level.text = UserData.instance.level.ToString();
     }
 
 }

@@ -32,7 +32,7 @@ public class PlayerDamageReciever : DamageReceiver
 
     public override void Deduct(float dame)
     {
-        GameUICtrl.Instance.UpdateHealthBar(hp/hpMax);
+        GameUICtrl.Instance.UpdateHealthBar(hp / hpMax);
         base.Deduct(dame);
     }
 }

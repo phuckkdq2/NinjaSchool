@@ -4,20 +4,20 @@ using UnityEngine;
 
 public abstract class EnemyAbstract : Darwin
 {
-    
-    [Header ("Enemy Abstract")]
+
+    [Header("Enemy Abstract")]
     [SerializeField] protected EnemyCtrl enemyCtrl;
-    public EnemyCtrl EnemyCtrl { get => enemyCtrl;}
+    public EnemyCtrl EnemyCtrl { get => enemyCtrl; }
 
     protected override void LoadComponent()
     {
-        base.LoadComponent();      
-        this.LoadEnemyCtrl();          
+        base.LoadComponent();
+        this.LoadEnemyCtrl();
     }
 
-    protected virtual void LoadEnemyCtrl()                            
+    protected virtual void LoadEnemyCtrl()
     {
-        if(this.enemyCtrl != null) return;
-        this.enemyCtrl = transform.parent.GetComponent<EnemyCtrl>();     
+        if (this.enemyCtrl != null) return;
+        this.enemyCtrl = transform.parent.GetComponent<EnemyCtrl>();
     }
 }

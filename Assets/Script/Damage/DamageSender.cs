@@ -9,7 +9,7 @@ public class DamageSender : Darwin
     public virtual void Send(Transform obj)
     {
         DamageReceiver damageReceiver = obj.GetComponent<DamageReceiver>();
-        if(damageReceiver == null) return;
+        if (damageReceiver == null) return;
         this.Send(damageReceiver);
     }
 

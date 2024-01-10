@@ -47,8 +47,8 @@ public class UserData
     public void AddExp(float count)
     {
         this.expCount += count;
-        GameUICtrl.Instance.UpdateExpBar(expCount/expPool);
-        if(expCount >= expPool) 
+        GameUICtrl.Instance.UpdateExpBar(expCount / expPool);
+        if (expCount >= expPool)
         {
             LevelUp();
             expCount = 0;

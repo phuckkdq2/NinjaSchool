@@ -43,7 +43,7 @@ public class EnemyAttack : DamageSender
     {
         targetAttack = null;
         canAttack = false;
-        if(!enemyCtrl.DamageReceiver.isDead) StartCoroutine(enemyCtrl.enemyMoveMent.MoveEnemy());
+        if (!enemyCtrl.DamageReceiver.isDead) StartCoroutine(enemyCtrl.enemyMoveMent.MoveEnemy());
     }
 
     protected virtual void Attack()

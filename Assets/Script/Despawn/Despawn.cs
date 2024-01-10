@@ -4,12 +4,13 @@ using UnityEngine;
 
 public abstract class Despawn : Darwin
 {
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         this.Despawning();
     }
     protected virtual void Despawning()
     {
-        if(!CanDespawn()) return;
+        if (!CanDespawn()) return;
         DespawnObject();
     }
 
@@ -17,6 +18,6 @@ public abstract class Despawn : Darwin
     {
         Destroy(transform.parent.gameObject);
     }
-    
+
     protected abstract bool CanDespawn();
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnPoint : Darwin
 {
-    [SerializeField] public List<Transform> points ;
+    [SerializeField] public List<Transform> points;
 
     protected override void LoadComponent()
     {
@@ -14,8 +14,8 @@ public class SpawnPoint : Darwin
 
     protected virtual void LoadPointSpawn()
     {
-        if(this.points.Count > 0) return;
-        foreach(Transform point in transform)       // duyệt qua các thằng point trong obj SpawnPointCtrl
+        if (this.points.Count > 0) return;
+        foreach (Transform point in transform)       // duyệt qua các thằng point trong obj SpawnPointCtrl
         {
             this.points.Add(point);
         }

@@ -19,7 +19,8 @@ public class EnemyCtrl : Darwin
     [SerializeField] public int damage;
     [SerializeField] public int hp;
 
-    private void Start() {
+    private void Start()
+    {
         this.damage = enemySO.dame;
         this.hp = enemySO.hpMax;
     }
@@ -36,8 +37,8 @@ public class EnemyCtrl : Darwin
     }
     protected virtual void LoadAnimator()
     {
-        if(this.animator != null) return;
-        this.animator = transform.GetComponentInChildren<Animator>(); 
+        if (this.animator != null) return;
+        this.animator = transform.GetComponentInChildren<Animator>();
     }
 
     protected virtual void LoadEnemyDespawn()
@@ -71,7 +72,8 @@ public class EnemyCtrl : Darwin
         this.enemyMoveMent = Transform.FindObjectOfType<EnemyMoveMent>();
     }
 
-    private void Update() {
+    private void Update()
+    {
         animator.SetInteger("state", (int)enemyState);
     }
 

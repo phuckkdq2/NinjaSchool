@@ -5,7 +5,7 @@ using UnityEngine;
 public class DespawnByTime : Despawn
 {
     [SerializeField] protected float timeDelay = 2f;
-    [SerializeField] protected float timer = 0 ;
+    [SerializeField] protected float timer = 0;
 
     protected override void OnEnable()
     {

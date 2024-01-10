@@ -19,7 +19,8 @@ public class MapCtrl : MonoBehaviour
         }
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         player = Transform.FindObjectOfType<PlayerCtrl>();
         vcCamera.Follow = player.transform;
     }

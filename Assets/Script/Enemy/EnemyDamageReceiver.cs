@@ -41,7 +41,7 @@ public class EnemyDamageReceiver : DamageReceiver
 
     public override void ReBorn()
     {
-        hpBar.localScale = new Vector3(1,1,1);
+        hpBar.localScale = new Vector3(1, 1, 1);
         this.hpMax = this.enemyCtrl.EnemySO.hpMax;
         base.ReBorn();
     }
@@ -50,9 +50,9 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         hpBar.localScale = new Vector3(hp / hpMax, 1f, 1f);
         base.Deduct(dame);
-        if(hp > UserData.instance.damage/10)
+        if (hp > UserData.instance.damage / 10)
         {
-            UserData.instance.AddExp(UserData.instance.damage/10);
+            UserData.instance.AddExp(UserData.instance.damage / 10);
         }
         else UserData.instance.AddExp(hp);
         enemyCtrl.enemyState = StateAnimation.Hurt;

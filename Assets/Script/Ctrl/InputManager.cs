@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-   private static InputManager instance;
+    private static InputManager instance;
     public static InputManager Instance { get => instance; }
-          
+
     [SerializeField] protected bool moveLeft;
-    public bool MoveLeft { get => moveLeft;}
+    public bool MoveLeft { get => moveLeft; }
 
     [SerializeField] protected bool moveRight;
-    public bool MoveRight { get => moveRight;}
+    public bool MoveRight { get => moveRight; }
 
     [SerializeField] protected bool isJump;
-    public bool IsJump { get => isJump;}
+    public bool IsJump { get => isJump; }
 
     [SerializeField] protected bool isAttack;
-    public bool IsAttack { get => isAttack;}
+    public bool IsAttack { get => isAttack; }
 
-    private void Awake() {
+    private void Awake()
+    {
         InputManager.instance = this;
     }
 
-    private void Start() {
+    private void Start()
+    {
         Application.targetFrameRate = 60;
     }
 

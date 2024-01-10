@@ -16,7 +16,7 @@ public abstract class DamageReceiver : Darwin
         base.LoadComponent();
         this.LoadCollider();
     }
-    
+
     protected virtual void LoadCollider()
     {
         if (this.boxCollider != null) return;

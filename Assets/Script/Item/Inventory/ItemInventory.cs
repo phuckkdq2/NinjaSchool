@@ -1,6 +1,6 @@
 using System;
 [Serializable]
-public class ItemInventory 
+public class ItemInventory
 {
     public ItemProfileSO itemProfile;
     public int itemCount = 0;
