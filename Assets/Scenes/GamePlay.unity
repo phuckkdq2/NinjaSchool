@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 2073499363}
+  expSlider: {fileID: 361966496}
   level: {fileID: 1314855321}
 --- !u!1 &177986887
 GameObject:

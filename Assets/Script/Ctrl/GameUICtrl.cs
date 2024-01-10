@@ -8,6 +8,7 @@ public class GameUICtrl : MonoBehaviour
     [SerializeField] private static GameUICtrl instance;
     [SerializeField] public static GameUICtrl Instance { get => instance;}
     [SerializeField] public Slider hpSlider;
+    [SerializeField] public Slider expSlider;
     [SerializeField] public Text level;
 
     void Awake()
@@ -17,6 +18,7 @@ public class GameUICtrl : MonoBehaviour
 
     private void Start() {
         UpdateLevel();
+        UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
     }
 
     public void UpdateHealthBar(float rate)
@@ -24,6 +26,14 @@ public class GameUICtrl : MonoBehaviour
         if(hpSlider)
         {
             hpSlider.value = rate;
+        }
+    }
+
+    public void UpdateExpBar(float rate)
+    {
+        if(expSlider)
+        {
+            expSlider.value = rate;
         }
     }
 

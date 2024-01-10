@@ -6,14 +6,14 @@ using UnityEngine;
 public class UserData
 {
     public static UserData instance;
-    public int coin;                        // tiền của user 
-    public int level;
+    public float coin;                        // tiền của user 
+    public float level;
     public bool musicState;                 // trạng thái nhạc
     public bool soundState;                 // trạng thái âm thanh
-    public int health;
-    public int damage;
-    public int expCount;
-    public int expPool;
+    public float health;
+    public float damage;
+    public float expCount;
+    public float expPool;
 
     public UserData()
     {
@@ -27,7 +27,7 @@ public class UserData
         expPool = 1000;
     }
 
-    public void AddCoin(int count)          // lưu tiền user 
+    public void AddCoin(float count)          // lưu tiền user 
     {
         this.coin += count;
         SavingData.Instance.SaveData();
@@ -44,9 +44,15 @@ public class UserData
         SavingData.Instance.SaveData();
     }
 
-    public void AddExp(int count)
+    public void AddExp(float count)
     {
         this.expCount += count;
+        GameUICtrl.Instance.UpdateExpBar(expCount/expPool);
+        if(expCount >= expPool) 
+        {
+            LevelUp();
+            expCount = 0;
+        }
         SavingData.Instance.SaveData();
     }
 
