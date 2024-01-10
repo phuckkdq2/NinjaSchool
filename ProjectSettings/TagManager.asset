@@ -16,8 +16,8 @@ TagManager:
   - Ground
   - OneWayGround
   - UnderWater
-  - 
-  - 
+  - Player
+  - EnemyHitBox
   - 
   - 
   - 

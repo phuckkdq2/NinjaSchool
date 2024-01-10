@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class EnemyDamageReceiver : DamageReceiver
 {
+    [SerializeField] protected EnemyCtrl enemyCtrl;
+    [SerializeField] public Transform hpBar;
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.LoadEnemyCtrl();
+    }
+    protected virtual void LoadEnemyCtrl()
+    {
+        if (this.enemyCtrl != null) return;
+        this.enemyCtrl = transform.parent.GetComponent<EnemyCtrl>();
+    }
     protected override void OnDead()
     {
         this.OnDeadFx();
         enemyCtrl.EnemyDespawn.DespawnEnemy();              // Despawn enemy 
         this.DropOnDead();
-        
     }
 
     protected virtual void DropOnDead()
@@ -30,9 +41,15 @@ public class EnemyDamageReceiver : DamageReceiver
 
     public override void ReBorn()
     {
+        hpBar.localScale = new Vector3(1,1,1);
         this.hpMax = this.enemyCtrl.EnemySO.hpMax;
         base.ReBorn();
     }
 
- 
+    public override void Deduct(float dame)
+    {
+        hpBar.localScale = new Vector3(hp / hpMax, 1f, 1f);
+        base.Deduct(dame);
+        enemyCtrl.enemyState = StateAnimation.Hurt;
+    }
 }

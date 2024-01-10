@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Spider
   m_EditorClassIdentifier: 
   enemyName: Spider
-  hpMax: 15
+  hpMax: 1000
+  dame: 25
   dropList: []

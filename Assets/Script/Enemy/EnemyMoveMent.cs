@@ -7,9 +7,9 @@ public class EnemyMoveMent : Darwin
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float moveSpeed;
-    Vector3 dirMove;
+    [SerializeField] public Vector3 dirMove;
     [SerializeField] protected EnemyCtrl enemyCtrl;
-    public EnemyCtrl EnemyCtrl { get => enemyCtrl; }
+    [SerializeField] public Transform hpBar;
 
     protected override void LoadComponent()
     {
@@ -26,42 +26,25 @@ public class EnemyMoveMent : Darwin
     void Start()
     {
         spawnPoint = enemyCtrl.transform.parent;
-        dirMove = Vector3.right;
+        SetMoveDir();
     }
+
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        enemyCtrl.enemyState = StateAnimation.Run;
         StartCoroutine(MoveEnemy());
+        moveSpeed = 4f;
     }
 
     void MoveEnemy2()
     {
-        transform.parent.DOMoveX(transform.position.x + 2f, 2f)
-            .SetEase(Ease.Linear)
-            .OnStart(() =>
-            {
-                transform.parent.localScale = new Vector3(1, 1, 1);
-            })
-            .OnComplete(() =>
-            {
-                transform.parent.localScale = new Vector3(-1, 1, 1);
-                transform.parent.DOMoveX(transform.position.x + -2f, 2f).SetEase(Ease.Linear).OnComplete(() =>
-                {
-                    MoveEnemy2();
-                });
-            });
-    }
-
-    IEnumerator MoveEnemy()
-    {
-        while (!enemyCtrl.DamageReceiver.isDead)
+        if (enemyCtrl.DamageReceiver.isDead || enemyCtrl.EnemyAttack.canAttack)
+            return;
+        else
         {
-            int rand = Random.Range(1, 40);
-            if (rand == 1) yield return new WaitForSeconds(2f);
-            else yield return new WaitForSeconds(0.15f);
-            transform.parent.position += dirMove * moveSpeed * Time.deltaTime;
-            moveSpeed = 5f;
+            transform.parent.position += dirMove * moveSpeed * Time.fixedDeltaTime;
             if (transform.parent.position.x > spawnPoint.position.x + 1)
             {
                 transform.parent.localScale = transform.parent.localScale = new Vector3(-1, 1, 1);
@@ -73,5 +56,33 @@ public class EnemyMoveMent : Darwin
                 dirMove = Vector3.right;
             }
         }
+    }
+
+    public IEnumerator MoveEnemy()
+    {
+        while (!enemyCtrl.DamageReceiver.isDead && !enemyCtrl.EnemyAttack.canAttack)
+        {
+            int rand = Random.Range(1, 40);
+            if (rand == 1) yield return new WaitForSeconds(2f);
+            else yield return new WaitForSeconds(0.15f);
+            transform.parent.localScale = new Vector3(dirMove.x, 1, 1);
+            hpBar.localScale = new Vector3(dirMove.x, 1, 1);
+            transform.parent.position += dirMove * moveSpeed * Time.fixedDeltaTime;
+            if (transform.parent.position.x > spawnPoint.position.x + 1)
+            {
+                dirMove.x = -1f;
+            }
+            else if (transform.parent.position.x < spawnPoint.position.x + -1)
+            {
+                dirMove.x = 1f;
+            }
+        }
+    }
+    public void SetMoveDir()
+    {
+        dirMove = Vector3.right;
+        int rand = Random.Range(1, 3);
+        if (rand == 1) dirMove.x = 1;
+        else dirMove.x = -1;
     }
 }

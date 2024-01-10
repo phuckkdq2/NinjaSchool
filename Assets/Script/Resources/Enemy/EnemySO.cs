@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySO : ScriptableObject
 {
    public string enemyName = "Enemy";
-   public float hpMax = 2;
+   public int hpMax = 2;
+   public int dame = 1;
    public List<DropRate> dropList ;
 }

@@ -23,6 +23,10 @@ public class InputManager : MonoBehaviour
         InputManager.instance = this;
     }
 
+    private void Start() {
+        Application.targetFrameRate = 60;
+    }
+
     void Update()
     {
         this.getInputkey();

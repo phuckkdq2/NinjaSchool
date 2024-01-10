@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Turtle
   m_EditorClassIdentifier: 
   enemyName: Turtle
-  hpMax: 12
+  hpMax: 650
+  dame: 17
   dropList: []

@@ -10,8 +10,7 @@ public class Movement : Darwin
     private Vector3 moveDir;
     public Vector3 MoveDir { get => moveDir; set => moveDir = value; }
     [SerializeField] protected Animator animator;
-    [SerializeField] protected StateMovement stateMovement;
-    float xDir;
+    [SerializeField] protected StateAnimation playerState;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] BoxCollider2D coll;
     [SerializeField] LayerMask jumableGround;
@@ -34,8 +33,13 @@ public class Movement : Darwin
 
     void Update()
     {
-        this.Moving();          // gọi hàm di chuyển
+
+    }
+
+    private void FixedUpdate()
+    {
         Jumping();
+        this.Moving();          // gọi hàm di chuyển
         UpdateAnimation();
     }
 
@@ -49,14 +53,13 @@ public class Movement : Darwin
             moveDir = Vector3.right;
             if (IsCompartagWall())
             {
-                return;
-            }
-            if (IsGrounded())
-            {
-                transform.parent.position += moveDir * moveSpeed * Time.deltaTime;
+                transform.parent.position = transform.parent.position;
             }
             else
-                transform.parent.position += moveDir * 5 * Time.deltaTime;
+            {
+                transform.parent.position += moveDir * moveSpeed * Time.fixedDeltaTime;
+            }
+
         }
         else if (InputManager.Instance.MoveLeft)
         {
@@ -65,14 +68,12 @@ public class Movement : Darwin
             moveDir = Vector3.left;
             if (IsCompartagWall())
             {
-                return;
-            }
-            if (IsGrounded())
-            {
-                transform.parent.position += moveDir * moveSpeed * Time.deltaTime;
+                transform.parent.position = transform.parent.position;
             }
             else
-                transform.parent.position += moveDir * 5 * Time.deltaTime;
+            {
+                transform.parent.position += moveDir * moveSpeed * Time.fixedDeltaTime;
+            }
         }
         else
         {
@@ -92,19 +93,19 @@ public class Movement : Darwin
     {
         if (isRunning && IsGrounded())
         {
-            stateMovement = StateMovement.Run;
+            playerState = StateAnimation.Run;
         }
-        else stateMovement = StateMovement.Idle;
+        else playerState = StateAnimation.Idle;
 
         if (rb.velocity.y > .1f)
         {
-            stateMovement = StateMovement.Jump;
+            playerState = StateAnimation.Jump;
         }
         else if (rb.velocity.y < -.1f)
         {
-            stateMovement = StateMovement.Falling;
+            playerState = StateAnimation.Falling;
         }
-        animator.SetInteger("State", (int)stateMovement);
+        animator.SetInteger("State", (int)playerState);
     }
 
     private bool IsGrounded()
@@ -123,7 +124,7 @@ public class Movement : Darwin
 
 }
 
-public enum StateMovement
+public enum StateAnimation
 {
     Idle,
     Run,

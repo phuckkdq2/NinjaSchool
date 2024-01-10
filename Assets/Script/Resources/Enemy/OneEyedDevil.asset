@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: OneEyedDevil
   m_EditorClassIdentifier: 
   enemyName: OneEyedDevil
-  hpMax: 20
+  hpMax: 1100
+  dame: 33
   dropList: []

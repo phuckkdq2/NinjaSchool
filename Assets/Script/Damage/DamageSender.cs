@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageSender : Darwin
 {
-    [SerializeField] protected float damage = 1;
+    [SerializeField] protected float damage;
 
     public virtual void Send(Transform obj)
     {
@@ -15,7 +15,7 @@ public class DamageSender : Darwin
 
     public virtual void Send(DamageReceiver damageReceiver)             // hàm truyền damage với tham số là DamageReceiver
     {
-        damageReceiver.Deduct(this.damage);                             // gọi hàm trừ máu trong DamageReceiver
+        damageReceiver.Deduct(damage);                             // gọi hàm trừ máu trong DamageReceiver
     }
 
 }
