@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,12 @@ TagManager:
     locked: 0
   - name: MapGround
     uniqueID: 2541807679
+    locked: 0
+  - name: 'Enemy '
+    uniqueID: 2269306753
+    locked: 0
+  - name: Player
+    uniqueID: 3003750791
     locked: 0
   - name: Default
     uniqueID: 0

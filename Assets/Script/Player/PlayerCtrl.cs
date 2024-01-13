@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class PlayerCtrl : Darwin           // load các componet cho dễ quản lí
@@ -16,6 +18,7 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
     public PlayerDamageSender PlayerDamageSender { get => playerDamageSender; }
     [SerializeField] protected PlayerDamageReciever playerDamageReciever;
     public PlayerDamageReciever PlayerDamageReciever { get => playerDamageReciever; }
+    [SerializeField] public Intersection point;
 
     protected override void LoadComponent()
     {
@@ -26,6 +29,7 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
         this.LoadMovement();
         this.LoadDamageSender();
         this.LoadDamageReciever();
+        DontDestroyOnLoad(gameObject);
     }
     protected virtual void LoadBoxColider()
     {
@@ -62,4 +66,5 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
         if (this.playerDamageReciever != null) return;
         this.playerDamageReciever = transform.GetComponentInChildren<PlayerDamageReciever>();
     }
+
 }

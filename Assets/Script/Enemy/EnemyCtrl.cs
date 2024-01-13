@@ -16,8 +16,8 @@ public class EnemyCtrl : Darwin
     public EnemyAttack EnemyAttack { get => enemyAttack; }
     public EnemyMoveMent enemyMoveMent;
     [SerializeField] public StateAnimation enemyState;
-    [SerializeField] public int damage;
-    [SerializeField] public int hp;
+    [SerializeField] public float damage;
+    [SerializeField] public float hp;
 
     private void Start()
     {

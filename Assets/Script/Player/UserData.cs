@@ -14,6 +14,7 @@ public class UserData
     public float damage;
     public float expCount;
     public float expPool;
+    public int stateSceneId;
 
     public UserData()
     {
@@ -25,6 +26,7 @@ public class UserData
         damage = 15;
         expCount = 0;
         expPool = 1000;
+        stateSceneId = 2;
     }
 
     public void AddCoin(float count)          // lưu tiền user 

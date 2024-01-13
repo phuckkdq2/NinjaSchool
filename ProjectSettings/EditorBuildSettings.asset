@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GamePlay.unity
+    path: Assets/Scenes/Home.unity
+    guid: 52973e61cecd28f45a702b1a896de43a
+  - enabled: 1
+    path: Assets/Scenes/HachiField.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/School.unity
+    guid: 41f5559e1bd34854d8e3f209637d1353
+  - enabled: 1
+    path: Assets/Scenes/IceRiverYamato.unity
+    guid: b7146674b52857c4ca2f81923df0db89
   m_configObjects: {}

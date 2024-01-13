@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Threading.Tasks;
 
 public class SavingData : MonoSingleton<SavingData>
 {
     public UserData userData;
+    [SerializeField] private Transform player;
 
-    public override void Awake()
+    public override async void Awake()
     {
         base.Awake();
-        LoadData();
+        await LoadData();
+        player.gameObject.SetActive(true);
+        GameUICtrl.Instance.UpdateLevel();
+        GameUICtrl.Instance.UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
     }
 
     private void Start()
@@ -19,25 +24,28 @@ public class SavingData : MonoSingleton<SavingData>
 
     }
 
-    public void LoadData()
+    public async Task LoadData()
     {
-        string file = "saveData.json";                                                  // tên file 
-
+        string file = "saveData.json";
         string dataFolder = Path.Combine(Application.persistentDataPath, "UserData");
+
         if (!Directory.Exists(dataFolder))
         {
             Directory.CreateDirectory(dataFolder);
         }
-        string filePath = Path.Combine(dataFolder, file);           //  đường dẫn file
+
+        string filePath = Path.Combine(dataFolder, file);
 
         if (!File.Exists(filePath))
         {
             userData = new UserData();
             SaveData();
         }
-        userData = JsonUtility.FromJson<UserData>(File.ReadAllText(filePath));
-        UserData.instance = userData;
-        Debug.Log(filePath);
+        else
+        {
+            userData = JsonUtility.FromJson<UserData>(await File.ReadAllTextAsync(filePath));
+            UserData.instance = userData;
+        }
     }
 
     public void SaveData()

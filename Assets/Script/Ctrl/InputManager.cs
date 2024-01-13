@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = 60;
     }
 

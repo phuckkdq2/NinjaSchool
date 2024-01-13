@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUICtrl : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class GameUICtrl : MonoBehaviour
 
     private void Start()
     {
-        UpdateLevel();
-        UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateHealthBar(float rate)
@@ -42,5 +42,6 @@ public class GameUICtrl : MonoBehaviour
     {
         level.text = UserData.instance.level.ToString();
     }
+
 
 }

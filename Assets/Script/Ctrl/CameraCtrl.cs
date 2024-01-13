@@ -5,14 +5,8 @@ using UnityEngine;
 
 public class CameraCtrl : MonoBehaviour
 {
-    // [SerializeField] private Transform player;
-    // void Update()
-    // {
-    //     transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
-    // }
-
-    public void Test()
+    private void Start()
     {
-        Debug.LogError("Tesst");
+        DontDestroyOnLoad(gameObject);
     }
 }
