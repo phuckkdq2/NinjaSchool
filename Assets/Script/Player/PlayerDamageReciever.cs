@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerDamageReciever : DamageReceiver
 {
     [SerializeField] protected PlayerCtrl playerCtrl;                       // chứa coponent quản lí các component khác
-    [SerializeField] public Transform alive;
-    [SerializeField] public Transform die;
     [SerializeField] public Transform btnBackHome;
+    [SerializeField] public Transform Button;
 
     protected override void LoadComponent()
     {
@@ -24,10 +23,9 @@ public class PlayerDamageReciever : DamageReceiver
 
     protected override void OnDead()
     {
-        Debug.LogError("GameOver");
+        playerCtrl.Animator.SetInteger("State", (int)StateAnimation.Death);
+        Button.gameObject.SetActive(false);
         GameUICtrl.Instance.hpSlider.value = 0;
-        alive.gameObject.SetActive(false);
-        die.gameObject.SetActive(true);
         btnBackHome.gameObject.SetActive(true);
     }
 
@@ -35,9 +33,8 @@ public class PlayerDamageReciever : DamageReceiver
     {
         playerCtrl.LoadNextScene("School");
         ReBorn();
-        alive.gameObject.SetActive(true);
-        die.gameObject.SetActive(false);
         btnBackHome.gameObject.SetActive(false);
+        Button.gameObject.SetActive(true);
     }
 
     public override void ReBorn()
@@ -45,12 +42,13 @@ public class PlayerDamageReciever : DamageReceiver
         this.hpMax = UserData.instance.health;
         GameUICtrl.Instance.hpSlider.value = 1;
         base.ReBorn();
+        playerCtrl.Animator.SetInteger("State", (int)StateAnimation.Idle);
     }
 
     public override void Deduct(float dame)
     {
         base.Deduct(dame);
         GameUICtrl.Instance.UpdateHealthBar(hp / hpMax);
-        playerCtrl.Animator.SetInteger("State", (int)StateAnimation.Hurt);
+        if (hp > 0) playerCtrl.Animator.SetInteger("State", (int)StateAnimation.Hurt);
     }
 }

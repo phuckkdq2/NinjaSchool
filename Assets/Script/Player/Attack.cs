@@ -11,14 +11,20 @@ public class Attack : PlayerAbstract
     public RaycastHit2D Hit { get => hit; set => hit = value; }
 
 
-    void Update()
+    // void Update()
+    // {
+    //     if (InputManager.Instance.IsAttack)
+    //     {
+    //         animator.SetInteger("State", (int)StateAnimation.Attack);
+    //         //this.Attacking();
+    //     }
+    // }
+
+    public void OnAttack()
     {
-        if (InputManager.Instance.IsAttack)
-        {
-            animator.SetInteger("State", (int)StateAnimation.Attack);
-            this.Attacking();
-        }
+        animator.SetInteger("State", (int)StateAnimation.Attack);
     }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();

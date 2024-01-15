@@ -32,11 +32,6 @@ public class Movement : Darwin
         this.playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
 
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         Jumping();
@@ -96,7 +91,12 @@ public class Movement : Darwin
         {
             playerState = StateAnimation.Run;
         }
-        else playerState = StateAnimation.Idle;
+        else if(playerCtrl.PlayerDamageReciever.isDead)
+        {
+            playerState = StateAnimation.Death;
+        }
+        else
+        playerState = StateAnimation.Idle;
 
         if (rb.velocity.y > .1f)
         {

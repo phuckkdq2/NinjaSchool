@@ -30,6 +30,7 @@ public class EnemyAttack : DamageSender
     private void OnTriggerEnter2D(Collider2D other)
     {
         targetAttack = other.transform;
+        targetAttack.GetComponent<DamageReceiver>();
         canAttack = true;
         Attack();
     }
@@ -58,7 +59,6 @@ public class EnemyAttack : DamageSender
                 return;                                         // nếu thời gian đánh < thời gian delay => không chạy             
             }
             this.hitTimer = 0;                                  // ngược lại set shootimer = 0 và chạy lệnh dưới (cho phép đánh)
-            enemyCtrl.enemyState = StateAnimation.Attack;
             Send(targetAttack);
         }
     }
@@ -77,6 +77,7 @@ public class EnemyAttack : DamageSender
         }
         transform.parent.localScale = new Vector3(enemyCtrl.enemyMoveMent.dirMove.x, 1, 1);
         enemyCtrl.enemyMoveMent.hpBar.localScale = new Vector3(enemyCtrl.enemyMoveMent.dirMove.x, 1, 1);
+        enemyCtrl.enemyState = StateAnimation.Attack;
     }
 
 }

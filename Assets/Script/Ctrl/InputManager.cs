@@ -30,18 +30,34 @@ public class InputManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    void Update()
+    // void Update()
+    // {
+    //     this.getInputkey();
+    // }
+
+    // public void getInputkey()
+    // {
+    //     this.moveLeft = Input.GetKey(KeyCode.LeftArrow);
+    //     this.moveRight = Input.GetKey(KeyCode.RightArrow);
+    //     this.isJump = Input.GetKey(KeyCode.UpArrow);
+    //     this.isAttack = Input.GetKeyDown(KeyCode.Space);
+    // }
+
+    public void CanMoveRight(bool isMoveRight)
     {
-        this.getInputkey();
+        moveRight = isMoveRight;
     }
 
-    public void getInputkey()
+    public void CanMoveLeft(bool isMoveLeft)
     {
-        this.moveLeft = Input.GetKey(KeyCode.LeftArrow);
-        this.moveRight = Input.GetKey(KeyCode.RightArrow);
-        this.isJump = Input.GetKey(KeyCode.UpArrow);
-        this.isAttack = Input.GetKeyDown(KeyCode.Space);
+        moveLeft = isMoveLeft;
     }
+
+    public void CanJump(bool isJump)
+    {
+        this.isJump = isJump;
+    }
+
 }
 
 

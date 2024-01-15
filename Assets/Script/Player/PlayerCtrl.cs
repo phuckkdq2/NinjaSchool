@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +18,8 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
     [SerializeField] protected PlayerDamageReciever playerDamageReciever;
     public PlayerDamageReciever PlayerDamageReciever { get => playerDamageReciever; }
     [SerializeField] public Intersection point;
+    [SerializeField] public bool isDead;
+
 
     protected override void LoadComponent()
     {
@@ -68,14 +68,13 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
         this.playerDamageReciever = transform.GetComponentInChildren<PlayerDamageReciever>();
     }
 
-    public IEnumerator LoadScene( string sceneName)
+    public IEnumerator LoadScene(string sceneName)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         while (!operation.isDone)
         {
             yield return null;
         }
-
     }
 
     public void LoadNextScene(string sceneName)
