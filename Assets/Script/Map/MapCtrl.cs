@@ -37,7 +37,6 @@ public class MapCtrl : MonoBehaviour
             if(checkPoints[i].intersection == player.point)
             {
                 player.transform.position = checkPoints[i].PlayerPoint.position;
-                Debug.LogError(checkPoints[i].PlayerPoint.position);
             }
         }
     }

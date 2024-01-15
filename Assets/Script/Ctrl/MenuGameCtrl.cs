@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public class MenuGameCtrl : MonoBehaviour
 {
     [SerializeField] public Slider timeRateFilled;
-    [SerializeField] public float curTime;
-    [SerializeField] public float timeRate;
     [SerializeField] public Transform btnPlay;
     [SerializeField] public Transform shuriken;
     [SerializeField] Transform HomeUI;
     [SerializeField] Transform GameUI;
+    public AnimationCurve moveCurve;
+    public float extendDuration;
     public Tween tween;
 
     void Start()
@@ -26,34 +26,32 @@ public class MenuGameCtrl : MonoBehaviour
         tween = shuriken.DORotate(new Vector3(0, 0, -360), 0.1f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
     }
 
-    public void UpdateTimeRate(float rate)
-    {
-        if (timeRateFilled)
-        {
-            timeRateFilled.value = rate;
-        }
-    }
-
     public void OnClickPlayGame()
     {
-        PlayGame();
-
+        StartCoroutine(PlayGame());
     }
 
-    async void PlayGame()
+    IEnumerator PlayGame()
     {
         btnPlay.gameObject.SetActive(false);
         timeRateFilled.gameObject.SetActive(true);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(UserData.instance.stateSceneId);
-        while (operation.progress < 0.9f)
+        AsyncOperation operation = SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
+        while (!operation.isDone)
         {
-            await Task.Delay(100);
-            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            timeRateFilled.value = progressValue;
+            timeRateFilled.value = operation.progress * 0.2f;
+            yield return null;
         }
-        await Task.Delay(1000);
-        HomeUI.gameObject.SetActive(false);
-        GameUI.gameObject.SetActive(true);
+        DOTween.To(() => timeRateFilled.value, x => timeRateFilled.value = x, 1f, extendDuration).SetEase(moveCurve)
+        .OnUpdate(() =>
+        {
+
+        })
+        .OnComplete(() =>
+        {
+            HomeUI.gameObject.SetActive(false);
+            GameUI.gameObject.SetActive(true);
+            SceneManager.UnloadScene("Home");
+        });
 
     }
 

@@ -16,4 +16,16 @@ public class FxSpawner : Spawner
         FxSpawner.instance = this;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < 10000; i++)
+        {
+            Transform smokeClone = Spawn(smokeOne, Vector3.zero, Quaternion.identity);
+        }
+        for (int i = 0; i < 10000; i++)
+        {
+            Transform bloodClone = Spawn(blood, Vector3.zero, Quaternion.identity);
+        }
+    }
+
 }
