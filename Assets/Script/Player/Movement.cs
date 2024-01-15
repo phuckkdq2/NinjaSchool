@@ -127,19 +127,11 @@ public class Movement : Darwin
         if(other.CompareTag("CheckPoint"))
         {
             playerCtrl.point = other.transform.GetComponent<PointTrans>().intersection;
-            StartCoroutine(LoadScene(other.transform.GetComponent<PointTrans>().name));
+            playerCtrl.LoadNextScene(other.transform.GetComponent<PointTrans>().name);
         }
     }
 
-    IEnumerator LoadScene( string sceneName)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
-
-    }
+    
 
 }
 

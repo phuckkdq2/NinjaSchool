@@ -37,7 +37,7 @@ public class Attack : PlayerAbstract
         if (hit.collider != null)
         {
             // Debug.Log(hit.collider.name);                                                                         // debug ra tên object mà nó bắn trúng       
-            playerCtrl.PlayerDamageSender.Send(hit.collider.transform);                                 // gọi hàm send dame để trừ máu 
+            playerCtrl.PlayerDamageSender.Send(hit.collider.transform);                                                 // gọi hàm send dame để trừ máu 
             this.CreateFxBlood(hit.collider);
         }
         else

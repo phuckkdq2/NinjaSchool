@@ -31,7 +31,7 @@ public class EnemyAttack : DamageSender
     {
         targetAttack = other.transform;
         canAttack = true;
-        enemyCtrl.enemyState = StateAnimation.Attack;
+        Attack();
     }
 
     private void FixedUpdate()

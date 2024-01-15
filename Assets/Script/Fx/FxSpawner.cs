@@ -18,13 +18,16 @@ public class FxSpawner : Spawner
 
     private void Start()
     {
-        for (int i = 0; i < 10000; i++)
+        if (this.poolObjs == null)
         {
-            Transform smokeClone = Spawn(smokeOne, Vector3.zero, Quaternion.identity);
-        }
-        for (int i = 0; i < 10000; i++)
-        {
-            Transform bloodClone = Spawn(blood, Vector3.zero, Quaternion.identity);
+            for (int i = 0; i < 100; i++)
+            {
+                Transform smokeClone = Spawn(smokeOne, Vector3.zero, Quaternion.identity);
+            }
+            for (int i = 0; i < 100; i++)
+            {
+                Transform bloodClone = Spawn(blood, Vector3.zero, Quaternion.identity);
+            }
         }
     }
 

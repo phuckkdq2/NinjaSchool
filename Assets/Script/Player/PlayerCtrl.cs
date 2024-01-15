@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : Darwin           // load các componet cho dễ quản lí
 {
@@ -65,6 +66,21 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
     {
         if (this.playerDamageReciever != null) return;
         this.playerDamageReciever = transform.GetComponentInChildren<PlayerDamageReciever>();
+    }
+
+    public IEnumerator LoadScene( string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+
+    }
+
+    public void LoadNextScene(string sceneName)
+    {
+        StartCoroutine(LoadScene(sceneName));
     }
 
 }

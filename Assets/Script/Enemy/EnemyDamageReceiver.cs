@@ -48,7 +48,6 @@ public class EnemyDamageReceiver : DamageReceiver
 
     public override void Deduct(float dame)
     {
-        hpBar.localScale = new Vector3(hp / hpMax, 1f, 1f);
         base.Deduct(dame);
         if (hp > UserData.instance.damage / 10)
         {
@@ -56,5 +55,6 @@ public class EnemyDamageReceiver : DamageReceiver
         }
         else UserData.instance.AddExp(hp);
         enemyCtrl.enemyState = StateAnimation.Hurt;
+        hpBar.localScale = new Vector3(hp / hpMax, 1f, 1f);
     }
 }

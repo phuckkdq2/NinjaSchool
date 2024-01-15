@@ -38,6 +38,10 @@ public class MapCtrl : MonoBehaviour
             {
                 player.transform.position = checkPoints[i].PlayerPoint.position;
             }
+            else
+            {
+                player.transform.position = Vector3.zero;
+            }
         }
     }
 
