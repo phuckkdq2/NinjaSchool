@@ -13,6 +13,7 @@ public class MapCtrl : MonoBehaviour
 
     private void Start()
     {
+        InputManager.Instance.StopOnLoadMAp();
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             EnemySpawner.Instance.SpawnEnemy(spawnPoints[i].points, Enemies[i]);

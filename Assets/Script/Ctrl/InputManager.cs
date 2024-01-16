@@ -58,6 +58,14 @@ public class InputManager : MonoBehaviour
         this.isJump = isJump;
     }
 
+    public void StopOnLoadMAp()
+    {
+        moveLeft = false;
+        moveRight = false;
+        isJump = false;
+        isAttack = false;
+    }
+
 }
 
 

@@ -40,6 +40,8 @@ public class SavingData : MonoSingleton<SavingData>
         {
             userData = new UserData();
             SaveData();
+            userData = JsonUtility.FromJson<UserData>(await File.ReadAllTextAsync(filePath));
+            UserData.instance = userData;
         }
         else
         {

@@ -30,6 +30,8 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
         this.LoadMovement();
         this.LoadDamageSender();
         this.LoadDamageReciever();
+        GameUICtrl.Instance.UpdateLevel();
+        GameUICtrl.Instance.UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
         DontDestroyOnLoad(gameObject);
     }
     protected virtual void LoadBoxColider()

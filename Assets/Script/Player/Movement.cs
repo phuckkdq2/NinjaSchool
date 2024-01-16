@@ -87,16 +87,19 @@ public class Movement : Darwin
 
     protected virtual void UpdateAnimation()
     {
-        if (isRunning && IsGrounded())
+        if (IsGrounded())
         {
-            playerState = StateAnimation.Run;
+            if (isRunning)
+            {
+                playerState = StateAnimation.Run;
+            }
+            else if (playerCtrl.PlayerDamageReciever.isDead)
+            {
+                playerState = StateAnimation.Death;
+            }
+            else
+                playerState = StateAnimation.Idle;
         }
-        else if(playerCtrl.PlayerDamageReciever.isDead)
-        {
-            playerState = StateAnimation.Death;
-        }
-        else
-        playerState = StateAnimation.Idle;
 
         if (rb.velocity.y > .1f)
         {
@@ -123,15 +126,16 @@ public class Movement : Darwin
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumableUnderWater);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("CheckPoint"))
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("CheckPoint"))
         {
             playerCtrl.point = other.transform.GetComponent<PointTrans>().intersection;
             playerCtrl.LoadNextScene(other.transform.GetComponent<PointTrans>().name);
         }
     }
 
-    
+
 
 }
 

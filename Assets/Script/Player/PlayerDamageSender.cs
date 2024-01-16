@@ -10,6 +10,11 @@ public class PlayerDamageSender : DamageSender
     {
         base.LoadComponent();
         this.LoadPlayerCtrl();
+
+    }
+
+    private void Start()
+    {
         this.damage = UserData.instance.damage;
     }
 
