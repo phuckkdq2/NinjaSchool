@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +20,12 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
     public PlayerDamageReciever PlayerDamageReciever { get => playerDamageReciever; }
     [SerializeField] public Intersection point;
     [SerializeField] public bool isDead;
-
+    [SerializeField] public Transform shuriken;
+    [SerializeField] public Transform loadMap;
+    [SerializeField] public AnimationCurve moveCurve;
+    [SerializeField] public bool interactNPC = false;
+    [SerializeField] public NPCManager npc;
+    [SerializeField] public Transform arrow;
 
     protected override void LoadComponent()
     {
@@ -72,11 +78,25 @@ public class PlayerCtrl : Darwin           // load các componet cho dễ quản
 
     public IEnumerator LoadScene(string sceneName)
     {
+        //loadMap.gameObject.SetActive(true);
+        //float valueRate;
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         while (!operation.isDone)
         {
+            //valueRate = operation.progress * 0.3f;
             yield return null;
         }
+        // shuriken.DORotate(new Vector3(0, 0, -360), 0.1f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+        // DOTween.To(() => 0, x => valueRate = x, 1f, 3f).SetEase(moveCurve)
+        // .OnUpdate(() =>
+        // {
+
+        // })
+        // .OnComplete(() =>
+        // {
+        //     loadMap.gameObject.SetActive(false);
+        //     SceneManager.UnloadScene(sceneName);
+        // });
     }
 
     public void LoadNextScene(string sceneName)

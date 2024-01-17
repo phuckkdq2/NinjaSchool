@@ -45,6 +45,7 @@ public class EnemyAttack : DamageSender
         targetAttack = null;
         canAttack = false;
         if (!enemyCtrl.DamageReceiver.isDead) StartCoroutine(enemyCtrl.enemyMoveMent.MoveEnemy());
+        enemyCtrl.enemyState = StateAnimation.Run;
     }
 
     protected virtual void Attack()

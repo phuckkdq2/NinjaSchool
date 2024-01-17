@@ -18,6 +18,7 @@ public class Movement : Darwin
     [SerializeField] LayerMask jumableUnderWater;
     [SerializeField] LayerMask collisonGround;
     [SerializeField] private bool isRunning;
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -133,6 +134,19 @@ public class Movement : Darwin
             playerCtrl.point = other.transform.GetComponent<PointTrans>().intersection;
             playerCtrl.LoadNextScene(other.transform.GetComponent<PointTrans>().name);
         }
+        if(other.CompareTag("NPC"))
+        {
+            playerCtrl.interactNPC = true;
+            playerCtrl.npc = other.transform.GetComponent<NPCManager>();
+            playerCtrl.arrow = playerCtrl.npc.transform.GetChild(0);
+            playerCtrl.arrow.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        playerCtrl.interactNPC = false;
+        playerCtrl.npc = null;
+        playerCtrl.arrow.gameObject.SetActive(false);
     }
 
 

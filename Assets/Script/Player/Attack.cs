@@ -22,7 +22,14 @@ public class Attack : PlayerAbstract
 
     public void OnAttack()
     {
-        animator.SetInteger("State", (int)StateAnimation.Attack);
+        if(playerCtrl.interactNPC)
+        {
+            
+        }
+        else
+        {
+            animator.SetInteger("State", (int)StateAnimation.Attack);
+        }
     }
 
     protected override void LoadComponent()

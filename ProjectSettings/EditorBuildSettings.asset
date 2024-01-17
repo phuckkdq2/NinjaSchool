@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IceRiverYamato.unity
     guid: b7146674b52857c4ca2f81923df0db89
+  - enabled: 1
+    path: Assets/Scenes/SakuraJungle.unity
+    guid: ba206338f6436144fadf6489edf7fd8e
   m_configObjects: {}

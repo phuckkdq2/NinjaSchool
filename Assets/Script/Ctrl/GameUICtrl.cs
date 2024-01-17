@@ -11,6 +11,7 @@ public class GameUICtrl : MonoBehaviour
     [SerializeField] public Slider hpSlider;
     [SerializeField] public Slider expSlider;
     [SerializeField] public Text level;
+    [SerializeField] public Text hp;
 
     void Awake()
     {
@@ -41,6 +42,11 @@ public class GameUICtrl : MonoBehaviour
     public void UpdateLevel()
     {
         level.text = UserData.instance.level.ToString();
+    }
+
+    public void UpdateHp(float hp)
+    {
+        this.hp.text = hp.ToString();
     }
 
 

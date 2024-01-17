@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d00b45eabeeb94bb12c6d774acef62, type: 3}
+  m_Name: Tabemono
+  m_EditorClassIdentifier: 
+  conversation:
+  - "Ta s\u1EAFp m\u1EDF qu\xE1n \u0103n ch\xE1u nh\u1EDB gh\xE9 qua \u1EE7ng h\u1ED9
+    nh\xE9"

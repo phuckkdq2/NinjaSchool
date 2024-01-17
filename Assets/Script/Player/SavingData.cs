@@ -16,6 +16,7 @@ public class SavingData : MonoSingleton<SavingData>
         await LoadData();
         player.gameObject.SetActive(true);
         GameUICtrl.Instance.UpdateLevel();
+        GameUICtrl.Instance.UpdateHp(userData.health);
         GameUICtrl.Instance.UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
     }
 

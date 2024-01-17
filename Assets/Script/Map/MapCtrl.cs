@@ -8,7 +8,7 @@ public class MapCtrl : MonoBehaviour
     [SerializeField] List<SpawnPoints> spawnPoints;
     [SerializeField] List<Transform> Enemies;
     [SerializeField] public CinemachineVirtualCamera vcCamera;
-    [SerializeField] public PlayerCtrl player; 
+    [SerializeField] public PlayerCtrl player;
     [SerializeField] public List<PointTrans> checkPoints;
 
     private void Start()
@@ -22,25 +22,31 @@ public class MapCtrl : MonoBehaviour
 
     private void OnEnable()
     {
+
+    }
+
+    private void Awake()
+    {
         player = Transform.FindObjectOfType<PlayerCtrl>();
         vcCamera.Follow = player.transform;
-        GetPosPlayer();
+        if (player.PlayerDamageReciever.isDead)
+        {
+            player.transform.position = Vector3.zero;
+        }
+        else player.transform.position = GetPosPlayer();
         player.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
-    private void GetPosPlayer()
+    private Vector3 GetPosPlayer()
     {
-        for(int i = 0; i< checkPoints.Count; i++)
+        for (int i = 0; i < checkPoints.Count; i++)
         {
-            if(checkPoints[i].intersection == player.point)
+            if (checkPoints[i].intersection == player.point)
             {
-                player.transform.position = checkPoints[i].PlayerPoint.position;
-            }
-            else
-            {
-                player.transform.position = Vector3.zero;
+                return checkPoints[i].PlayerPoint.position;
             }
         }
+        return Vector3.zero;
     }
 
 }
