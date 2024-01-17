@@ -35,7 +35,7 @@ public class MenuGameCtrl : MonoBehaviour
     {
         btnPlay.gameObject.SetActive(false);
         timeRateFilled.gameObject.SetActive(true);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
+        AsyncOperation operation = SceneManager.LoadSceneAsync("School",LoadSceneMode.Additive);
         while (!operation.isDone)
         {
             timeRateFilled.value = operation.progress * 0.2f;

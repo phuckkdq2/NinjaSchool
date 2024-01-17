@@ -12,4 +12,5 @@ public enum Intersection    // nút giao giữa các cổng của map
 {
     SchoolVsHachi,
     SchooolVsYamato,
+    HachiVsSakura
 }
