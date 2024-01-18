@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b03cdc8d4dbcf4fac5d1afe6084f87, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: 
-  enemyName: Turtle
+  enemyName: Knight
   hpMax: 1600
   dame: 50
   dropList: []

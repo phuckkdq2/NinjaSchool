@@ -43,6 +43,7 @@ public class PlayerDamageReciever : DamageReceiver
         base.ReBorn();
         playerCtrl.Animator.SetInteger("State", (int)StateAnimation.Idle);
         playerCtrl.transform.position = Vector3.zero;
+        GameUICtrl.Instance.UpdateHp(hp);
     }
 
     public override void Deduct(float dame)

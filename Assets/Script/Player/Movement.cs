@@ -134,7 +134,7 @@ public class Movement : Darwin
             playerCtrl.point = other.transform.GetComponent<PointTrans>().intersection;
             playerCtrl.LoadNextScene(other.transform.GetComponent<PointTrans>().name);
         }
-        if(other.CompareTag("NPC"))
+        if (other.CompareTag("NPC"))
         {
             playerCtrl.interactNPC = true;
             playerCtrl.npc = other.transform.GetComponent<NPCManager>();
@@ -144,9 +144,12 @@ public class Movement : Darwin
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        playerCtrl.interactNPC = false;
-        playerCtrl.npc = null;
-        playerCtrl.arrow.gameObject.SetActive(false);
+        if (other.CompareTag("NPC"))
+        {
+            playerCtrl.interactNPC = false;
+            playerCtrl.npc = null;
+            playerCtrl.arrow.gameObject.SetActive(false);
+        }
     }
 
 

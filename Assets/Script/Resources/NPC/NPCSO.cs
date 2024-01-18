@@ -6,4 +6,12 @@ using UnityEngine;
 public class NPCSO : ScriptableObject
 {
     public List<string> conversation ;
+    public List<NPCFunction> nPCFunctions;
+}
+
+public enum NPCFunction
+{
+    talk,
+    shop,
+    misson,
 }

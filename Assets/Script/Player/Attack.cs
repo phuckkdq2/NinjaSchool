@@ -24,7 +24,7 @@ public class Attack : PlayerAbstract
     {
         if(playerCtrl.interactNPC)
         {
-            
+            playerCtrl.npc.Talking();
         }
         else
         {
