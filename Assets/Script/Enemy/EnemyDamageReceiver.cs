@@ -18,6 +18,12 @@ public class EnemyDamageReceiver : DamageReceiver
     }
     protected override void OnDead()
     {
+        if(enemyCtrl.EnemySO.enemyName.Equals("Rabbit") && GameUICtrl.Instance.takeMisson)
+        {
+            UserData.instance.countMisson ++;
+            SavingData.Instance.SaveData();
+            GameUICtrl.Instance.UpdateMisson();
+        }
         this.OnDeadFx();
         enemyCtrl.EnemyDespawn.DespawnEnemy();              // Despawn enemy 
         this.DropOnDead();

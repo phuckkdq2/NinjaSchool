@@ -18,6 +18,7 @@ public class SavingData : MonoSingleton<SavingData>
         GameUICtrl.Instance.UpdateLevel();
         GameUICtrl.Instance.UpdateHp(userData.health);
         GameUICtrl.Instance.UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
+        GameUICtrl.Instance.UpdateItemHp();
     }
 
     private void Start()
@@ -49,6 +50,8 @@ public class SavingData : MonoSingleton<SavingData>
             userData = JsonUtility.FromJson<UserData>(await File.ReadAllTextAsync(filePath));
             UserData.instance = userData;
         }
+
+        Debug.LogError(filePath);
     }
 
     public void SaveData()

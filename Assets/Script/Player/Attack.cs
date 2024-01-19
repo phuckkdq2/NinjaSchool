@@ -22,9 +22,9 @@ public class Attack : PlayerAbstract
 
     public void OnAttack()
     {
-        if(playerCtrl.interactNPC)
+        if (playerCtrl.interactNPC)
         {
-            playerCtrl.npc.Talking();
+            GameUICtrl.Instance.NpcInterRact();
         }
         else
         {

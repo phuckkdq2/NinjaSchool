@@ -13,11 +13,6 @@ public class PlayerDamageSender : DamageSender
 
     }
 
-    private void Start()
-    {
-        this.damage = UserData.instance.damage;
-    }
-
     protected virtual void LoadPlayerCtrl()
     {
         if (this.playerCtrl != null) return;
@@ -26,7 +21,9 @@ public class PlayerDamageSender : DamageSender
 
     public override void Send(DamageReceiver damageReceiver)
     {
+        damage = UserData.instance.damage;
         base.Send(damageReceiver);
     }
+
 
 }

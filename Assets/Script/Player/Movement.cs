@@ -140,6 +140,25 @@ public class Movement : Darwin
             playerCtrl.npc = other.transform.GetComponent<NPCManager>();
             playerCtrl.arrow = playerCtrl.npc.transform.GetChild(0);
             playerCtrl.arrow.gameObject.SetActive(true);
+            GameUICtrl.Instance.npc = playerCtrl.npc;
+        }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.collider.CompareTag("Item"))
+        {
+            var item = other.transform.parent.GetComponent<ItemCtrl>();
+            switch (item.item.itemCode)
+            {
+                case ItemCode.Hp:
+                    UserData.instance.AddHp(1);
+                    break;
+                case ItemCode.Coin:
+                    UserData.instance.AddCoin(50);
+                    break;
+            }
+            ItemDropSpawner.Instance.Despawn(other.transform);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -149,10 +168,9 @@ public class Movement : Darwin
             playerCtrl.interactNPC = false;
             playerCtrl.npc = null;
             playerCtrl.arrow.gameObject.SetActive(false);
+            GameUICtrl.Instance.ClearSelectionView();
         }
     }
-
-
 
 }
 

@@ -12,6 +12,13 @@ public class GameUICtrl : MonoBehaviour
     [SerializeField] public Slider expSlider;
     [SerializeField] public Text level;
     [SerializeField] public Text hp;
+    [SerializeField] public Text itemHpCount;
+    [SerializeField] public Transform holder;
+    [SerializeField] public NPCManager npc;
+    [SerializeField] public BoxNpc boxNpc;
+    [SerializeField] public bool takeMisson = false;
+    [SerializeField] public Text misson;
+
 
     void Awake()
     {
@@ -21,6 +28,7 @@ public class GameUICtrl : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+
     }
 
     public void UpdateHealthBar(float rate)
@@ -49,5 +57,35 @@ public class GameUICtrl : MonoBehaviour
         this.hp.text = hp.ToString();
     }
 
+    public void UpdateItemHp()
+    {
+        itemHpCount.text = UserData.instance.hpCount.ToString();
+    }
+
+    public void ClearSelectionView()
+    {
+        foreach (Transform i in holder)
+        {
+            Destroy(i.gameObject);
+        }
+    }
+
+    public void NpcInterRact()
+    {
+        ClearSelectionView();
+        for (int i = 0; i < npc.npcData.nPCFunctions.Count; i++)
+        {
+            var boxClone = Instantiate(boxNpc, holder);
+            boxClone.Innit(npc.npcData.nPCFunctions[i], npc);
+        }
+    }
+
+    public void UpdateMisson()
+    {
+        if(takeMisson)
+        {
+            misson.text = "thỏ: " + UserData.instance.countMisson + "/20";
+        }
+    }
 
 }

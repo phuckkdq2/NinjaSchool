@@ -53,4 +53,17 @@ public class PlayerDamageReciever : DamageReceiver
         GameUICtrl.Instance.UpdateHp(hp);
         if (hp > 0) playerCtrl.Animator.SetInteger("State", (int)StateAnimation.Hurt);
     }
+
+    public virtual void BuffHp()
+    {
+        if (hp == hpMax) return;
+        if (hp < hpMax)
+        {
+            hp += 150;
+            UserData.instance.AddHp(-1);
+            GameUICtrl.Instance.UpdateHealthBar(hp / hpMax);
+            GameUICtrl.Instance.UpdateHp(hp);
+            if (hp > hpMax) hp = hpMax;
+        }
+    }
 }

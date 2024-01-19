@@ -15,4 +15,12 @@ MonoBehaviour:
   enemyName: Spider
   hpMax: 1000
   dame: 25
-  dropList: []
+  dropList:
+  - itemSO: {fileID: 11400000, guid: 4dd7863242b390d4bb6a53e143db8619, type: 2}
+    dropRate: 0
+    minDrop: 0
+    maxDrop: 0
+  - itemSO: {fileID: 11400000, guid: 229b7567fbea5a948bbb1c163bfdd518, type: 2}
+    dropRate: 0
+    minDrop: 0
+    maxDrop: 0

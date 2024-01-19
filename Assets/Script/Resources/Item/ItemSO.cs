@@ -8,4 +8,6 @@ public class ItemSO : ScriptableObject
 {
     public ItemCode itemCode = ItemCode.NoItem;
     public string itemName = " item";
+    public float value ;
+    public string infor;
 }

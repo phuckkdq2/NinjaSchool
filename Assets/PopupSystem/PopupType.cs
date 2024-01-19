@@ -1,5 +1,7 @@
 ﻿public enum PopupType
 {
     None,
-    backHomeBtn,
+    PopupSample1,
+    PopupSample2,
+    popupShop,
 }

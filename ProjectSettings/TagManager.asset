@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - CheckPoint
   - NPC
+  - Item
   layers:
   - Default
   - TransparentFX

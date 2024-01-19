@@ -110,7 +110,6 @@ namespace Popup
             }
         }
 
-
         public void SetBackBlockerPressedEventOfCurrentPopup(Action BackBlockerPressedEvent)
         {
             if (popupInfoStack.Count > 0)
@@ -351,7 +350,7 @@ namespace Popup
 
             if (GUILayout.Button("Open Popup Sample 1"))
             {
-                var popup = PopupSystem.GetOpenBuilder().SetType(PopupType.backHomeBtn).Open<PopupSample1>();
+                var popup = PopupSystem.GetOpenBuilder().SetType(PopupType.PopupSample1).Open<PopupSample1>();
                 popup.PostAnimateHideEvent=()=>{
                     Debug.LogError("Post hide event");
                 };
@@ -362,15 +361,10 @@ namespace Popup
         
             if (GUILayout.Button("Open Popup Sample 2"))
             {
-                PopupSystem.Instance.ShowPopup(PopupType.backHomeBtn);
+                PopupSystem.Instance.ShowPopup(PopupType.PopupSample2);
             }
 
-            if (GUILayout.Button("Open Popup Gallery"))
-            {
-                PopupSystem.GetOpenBuilder().SetType(PopupType.backHomeBtn)
-                .SetCurrentPopupBehaviour(CurrentPopupBehaviour.Close)
-                .Open();
-            }
+
 
         }
     }

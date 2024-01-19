@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        this.AddItem(ItemCode.IronOre, 3);
+        this.AddItem(ItemCode.Hp, 3);
     }
 
     protected virtual bool AddItem(ItemCode itemCode, int addCount)         // nhặt đồ bằng item code
