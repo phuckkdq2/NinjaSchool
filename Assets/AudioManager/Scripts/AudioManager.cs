@@ -172,10 +172,10 @@ public class AudioManager : MonoBehaviour
                 audioManager.PlayMusic(AudioClipId.DecorMusic);
             }
         
-            if (GUILayout.Button("Play SFX"))
-            {
-                audioManager.PlaySFX(AudioClipId.ItemSelect1);
-            }
+            // if (GUILayout.Button("Play SFX"))
+            // {
+            //     audioManager.PlaySFX(AudioClipId.ItemSelect1);
+            // }
         }
     }
 #endif

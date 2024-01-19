@@ -19,6 +19,9 @@ public class SavingData : MonoSingleton<SavingData>
         GameUICtrl.Instance.UpdateHp(userData.health);
         GameUICtrl.Instance.UpdateExpBar(UserData.instance.expCount / UserData.instance.expPool);
         GameUICtrl.Instance.UpdateItemHp();
+        AudioManager.Instance.SetEffectEnable(UserData.instance.soundState);
+        AudioManager.Instance.SetMusicEnable(UserData.instance.musicState);
+        AudioManager.Instance.PlayMusic(AudioClipId.BG);
     }
 
     private void Start()

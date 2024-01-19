@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Popup;
 
 public class GameUICtrl : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class GameUICtrl : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);    
 
     }
 
@@ -86,6 +87,13 @@ public class GameUICtrl : MonoBehaviour
         {
             misson.text = "thỏ: " + UserData.instance.countMisson + "/20";
         }
+    }
+
+    public void OnClickSetting()
+    {
+        Popup.PopupSystem.GetOpenBuilder().SetType(PopupType.popupSetting)                                              // show game win
+                    .SetCurrentPopupBehaviour(CurrentPopupBehaviour.Close)
+                    .Open();
     }
 
 }

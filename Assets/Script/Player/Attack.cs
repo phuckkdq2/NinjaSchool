@@ -28,6 +28,7 @@ public class Attack : PlayerAbstract
         }
         else
         {
+            AudioManager.Instance.PlaySFX(AudioClipId.Hit);    
             animator.SetInteger("State", (int)StateAnimation.Attack);
         }
     }
